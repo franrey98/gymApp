@@ -10,22 +10,30 @@ const CalculatorBMI = () => {
   console.log("bmi desde calculator", categoryBMI);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.textIntroduction}>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam dolore
-        neque eaque sapiente tempore iste cumque necessitatibus placeat adipisci
-        labore iure temporibus perferendis, reiciendis quos, quaerat dolores ex
-        tenetur. Mollitia!
-      </Text>
+    <View
+      style={{
+        flex: 1,
 
-      <FormBMI />
-      <View style={{ alignItems: "center", marginTop: 20 }}>
-        {resultBMI ? <Text>Tu resultado: {resultBMI}</Text> : ""}
-        {isLoading ? (
-          <ActivityIndicator size={30} />
-        ) : (
-          categoryBMI && <BMICategoryIndicator categoryBMI={categoryBMI} />
-        )}
+        backgroundColor: "white",
+      }}
+    >
+      <View style={styles.container}>
+        <Text style={styles.textIntroduction}>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam
+          dolore neque eaque sapiente tempore iste cumque necessitatibus placeat
+          adipisci labore iure temporibus perferendis, reiciendis quos, quaerat
+          dolores ex tenetur. Mollitia!
+        </Text>
+
+        <FormBMI />
+        <View style={{ alignItems: "center", marginTop: 20 }}>
+          {resultBMI ? <Text>Tu resultado: {resultBMI}</Text> : ""}
+          {isLoading ? (
+            <ActivityIndicator size={30} />
+          ) : (
+            categoryBMI && <BMICategoryIndicator categoryBMI={categoryBMI} />
+          )}
+        </View>
       </View>
     </View>
   );
