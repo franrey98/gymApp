@@ -1,12 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import { useBMI } from "../../../hooks/useBMI";
 import BMICategoryIndicator from "../CategoryIndicator/BMICategoryIndicator";
 import FormBMI from "../FormBMI/FormBMI";
 import { styles } from "./CalculatorBMI.styled";
 
 const CalculatorBMI = () => {
-  const { resultBMI, categoryBMI } = useBMI();
+  const { resultBMI, categoryBMI, isLoading } = useBMI();
   console.log("bmi desde calculator", categoryBMI);
 
   return (
@@ -21,7 +21,11 @@ const CalculatorBMI = () => {
       <FormBMI />
       <View style={{ alignItems: "center", marginTop: 20 }}>
         {resultBMI ? <Text>Tu resultado: {resultBMI}</Text> : ""}
-        {categoryBMI && <BMICategoryIndicator categoryBMI={categoryBMI} />}
+        {isLoading ? (
+          <ActivityIndicator size={30} />
+        ) : (
+          categoryBMI && <BMICategoryIndicator categoryBMI={categoryBMI} />
+        )}
       </View>
     </View>
   );
