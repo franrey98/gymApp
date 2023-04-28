@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CalculatorBMI from "../screens/CalculatorBMI";
-import Search from "../screens/Search";
+import CalculatorBMI from "../screens/CalculatorBMI/CalculatorBMI/CalculatorBMI";
+import Search from "../screens/search/Search";
 import TabsTopHome from "../screens/Home/TabsTopHome";
 
 const BottomTab = createBottomTabNavigator();
@@ -28,7 +28,18 @@ const TabNavigator = ({ navigation }: any) => {
         component={Search}
       />
       <BottomTab.Screen
-        options={{ headerTitle: "CalculatorBMI", tabBarLabel: "CalculatorBMI" }}
+        options={{
+          headerTitle: "CalculatorBMI",
+          tabBarLabel: "CalculatorBMI",
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 18,
+          },
+          headerStyle: {
+            backgroundColor: "#2e68b3",
+          },
+        }}
         name="News"
         component={CalculatorBMI}
       />

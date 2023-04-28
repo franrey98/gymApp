@@ -1,12 +1,59 @@
-import { createContext, useEffect, useState } from "react";
-import { API_URL_BASE_BMI, API_URL_BASE_MUSCLES, API_KEY } from "@env";
+import { createContext, useState } from "react";
+import { API_URL_BASE_BMI, API_KEY } from "@env";
+import axios from "axios";
 
-interface ContextProps {}
+interface Props {
+  children: React.ReactNode;
+}
 
-export const BMIContext = createContext({} as ContextProps);
+interface BMIContextState {
+  calculateBMI: (weight: number, height: number) => Promise<void>;
+  resultBMI: number;
+  categoryBMI: string;
+}
 
-export const BMIProvider = ({ children }: any) => {
-  console.log("context bmi");
+export const BMIContext = createContext<BMIContextState | null>(null);
 
-  return <BMIContext.Provider value={{}}>{children}</BMIContext.Provider>;
+export const BMIProvider: React.FC<Props> = ({ children }) => {
+  const [resultBMI, setResultBMI] = useState(0);
+  const [categoryBMI, setCategoryBMI] = useState("");
+
+  const calculateBMI = async (weight: number, height: number) => {
+    const options = {
+      method: "GET",
+      url: `${API_URL_BASE_BMI}/metric`,
+      params: {
+        weight,
+        height,
+      },
+      headers: {
+        "content-type": "application/octet-stream",
+        "X-RapidAPI-Key": API_KEY,
+      },
+    };
+
+    try {
+      const response = await axios.request(options);
+      const fixedNumber = response.data.bmi.toFixed(2);
+
+      setResultBMI(fixedNumber);
+      if (fixedNumber < 18.5) {
+        setCategoryBMI("Underweight");
+      } else if (fixedNumber < 24.9) {
+        setCategoryBMI("Normal weight");
+      } else if (fixedNumber < 29.9) {
+        setCategoryBMI("Overweight");
+      } else {
+        setCategoryBMI("Obesity");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <BMIContext.Provider value={{ resultBMI, calculateBMI, categoryBMI }}>
+      {children}
+    </BMIContext.Provider>
+  );
 };

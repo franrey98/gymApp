@@ -1,6 +1,6 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import HomeExercises from "./HomeExercises";
-import Search from "../Search";
+import Search from "../search/Search";
 
 const TopTab = createMaterialTopTabNavigator();
 
