@@ -1,41 +1,49 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 import { useBMI } from "../../../hooks/useBMI";
 import BMICategoryIndicator from "../CategoryIndicator/BMICategoryIndicator";
 import FormBMI from "../FormBMI/FormBMI";
 import { styles } from "./CalculatorBMI.styled";
+import TipsCategory from "../TipsCategory/TipsCategory";
 
 const CalculatorBMI = () => {
   const { resultBMI, categoryBMI, isLoading } = useBMI();
-  console.log("bmi desde calculator", categoryBMI);
 
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
-
         backgroundColor: "white",
       }}
     >
       <View style={styles.container}>
         <Text style={styles.textIntroduction}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam
-          dolore neque eaque sapiente tempore iste cumque necessitatibus placeat
-          adipisci labore iure temporibus perferendis, reiciendis quos, quaerat
-          dolores ex tenetur. Mollitia!
+          El Índice de Masa Corporal es una medida que se utiliza para evaluar
+          el estado nutricional de una persona. Es una fórmula matemática que
+          relaciona el peso y la altura de una persona, y se expresa en unidades
+          de kilogramos por metro cuadrado (kg/m²).
         </Text>
 
         <FormBMI />
         <View style={{ alignItems: "center", marginTop: 20 }}>
-          {resultBMI ? <Text>Tu resultado: {resultBMI}</Text> : ""}
+          {resultBMI ? (
+            <Text>Tu Indice de Masa Corporal es de: {resultBMI}</Text>
+          ) : (
+            ""
+          )}
           {isLoading ? (
             <ActivityIndicator size={30} />
           ) : (
-            categoryBMI && <BMICategoryIndicator categoryBMI={categoryBMI} />
+            categoryBMI && (
+              <View style={{ alignItems: "center", marginVertical: 20 }}>
+                <BMICategoryIndicator categoryBMI={categoryBMI} />
+                <TipsCategory categoryBMI={categoryBMI} />
+              </View>
+            )
           )}
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

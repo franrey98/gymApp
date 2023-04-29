@@ -45,7 +45,9 @@ const FormBMI = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Calcula tu Indice de Masa Corporal</Text>
+      <Text style={{ textAlign: "center", marginTop: 20 }}>
+        Calcula tu Indice de Masa Corporal
+      </Text>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}

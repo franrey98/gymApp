@@ -1,3 +1,3 @@
-export interface PropsCategory {
-  category: "underweight" | "normal" | "overweight" | "obese";
+export interface BMICategoryIndicatorProps {
+  categoryBMI: string;
 }

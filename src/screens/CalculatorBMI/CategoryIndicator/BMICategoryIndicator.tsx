@@ -1,11 +1,9 @@
-import { View } from "react-native";
+import { BMICategoryIndicatorProps } from "../types";
 import Donut from "./Donut";
 
-interface BMICategoryIndicatorProps {
-  categoryBMI: string;
-}
-
-const BMICategoryIndicator = ({ categoryBMI }: BMICategoryIndicatorProps) => {
+const BMICategoryIndicator = ({
+  categoryBMI = "",
+}: BMICategoryIndicatorProps) => {
   const getBMIStatus = () => {
     if (categoryBMI === "Underweight") {
       return { classification: "Bajo peso", color: "blue" };
