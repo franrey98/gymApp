@@ -5,6 +5,11 @@ import { fonts } from "../../../constants/fonts";
 export const styles = StyleSheet.create({
   container: {
     marginHorizontal: 50,
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: "#c7e4e8",
+    backgroundColor: "#d8edf0",
   },
   input: {
     width: "100%",

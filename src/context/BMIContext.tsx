@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { API_URL_BASE_BMI, API_KEY } from "@env";
+import Toast from "react-native-toast-message";
 import axios from "axios";
 
 interface Props {
@@ -50,8 +51,13 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
         setCategoryBMI("Obesity");
       }
       setIsLoading(false);
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if (error.response.status === 429) {
+        Toast.show({
+          type: "error",
+          text1: "Se superaron la cantidad de peticiones ",
+        });
+      }
     }
   };
 

@@ -5,6 +5,7 @@ import BMICategoryIndicator from "../CategoryIndicator/BMICategoryIndicator";
 import FormBMI from "../FormBMI/FormBMI";
 import { styles } from "./CalculatorBMI.styled";
 import TipsCategory from "../TipsCategory/TipsCategory";
+import Toast from "react-native-toast-message";
 
 const CalculatorBMI = () => {
   const { resultBMI, categoryBMI, isLoading } = useBMI();
@@ -43,6 +44,7 @@ const CalculatorBMI = () => {
           )}
         </View>
       </View>
+      <Toast position="bottom" />
     </ScrollView>
   );
 };

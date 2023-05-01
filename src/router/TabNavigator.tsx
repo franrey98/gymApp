@@ -4,6 +4,7 @@ import Search from "../screens/search/Search";
 import TabsTopHome from "../screens/Home/TabsTopHome";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../constants/colors";
+import HomeExercises from "../screens/Home/HomeExercises";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -23,31 +24,47 @@ const TabNavigator = () => {
 
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarShowLabel: false,
-        tabBarInactiveTintColor: colors.secondary,
+        tabBarShowLabel: true,
+        tabBarInactiveTintColor: colors.grey,
         tabBarStyle: {
           backgroundColor: "white",
-          borderTopWidth: 1,
-          borderTopColor: colors.primaryTransparent,
+          borderTopWidth: 0.5,
+          borderTopColor: "#b6e4fa",
+        },
+        headerStyle: {
+          backgroundColor: colors.secondary,
         },
       })}
     >
       <BottomTab.Screen
         name="HomeMatchs"
         options={{
-          headerTitle: "Ejercicios en casa".toUpperCase(),
+          title: "Inicio",
+          headerTitle: "Ejercicios en casa",
+          headerTitleAlign: "left",
           headerTitleStyle: {
             color: "white",
             fontSize: 18,
           },
           headerStyle: {
-            backgroundColor: "#2e68b3",
+            backgroundColor: colors.secondary,
           },
         }}
-        component={TabsTopHome}
+        component={HomeExercises}
       />
       <BottomTab.Screen
-        options={{ headerTitle: "Buscador", tabBarLabel: "Buscador" }}
+        options={{
+          headerTitle: "Buscador",
+          tabBarLabel: "Buscador",
+          headerTitleAlign: "left",
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 18,
+          },
+          headerStyle: {
+            backgroundColor: colors.secondary,
+          },
+        }}
         name="Search"
         component={Search}
       />
