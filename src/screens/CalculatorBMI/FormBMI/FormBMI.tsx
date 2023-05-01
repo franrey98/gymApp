@@ -16,9 +16,9 @@ const FormBMI = () => {
 
   const handleSubmit = (values: ValuesBMI, { resetForm }: any) => {
     const weight = parseFloat(values.weight);
-    const height = parseFloat(values.height);
+    let height = parseFloat(values.height.replace(",", "."));
 
-    if (values.height.match(/^\d\.\d{2}$/)) {
+    if (!isNaN(weight) && !isNaN(height)) {
       calculateBMI(weight, height);
       resetForm();
     }
@@ -26,7 +26,6 @@ const FormBMI = () => {
 
   const validateForm = (values: ValuesBMI) => {
     const errors: Partial<ValuesBMI> = {};
-
     if (!values.weight) {
       errors.weight = "El peso es requerido";
     }
@@ -35,9 +34,6 @@ const FormBMI = () => {
     }
     if (!values.height) {
       errors.height = "La altura es requerida";
-    } else if (!values.height.match(/^\d\.\d{2}$/)) {
-      errors.height =
-        "La altura debe tener el formato correcto (por ejemplo, 1.70)";
     }
 
     return errors;
@@ -78,7 +74,7 @@ const FormBMI = () => {
                 value={values.height}
                 keyboardType="numeric"
                 maxLength={4}
-                placeholder="Altura (cm)"
+                placeholder="Altura (mts)"
               />
             </View>
 
