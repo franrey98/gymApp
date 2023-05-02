@@ -39,7 +39,12 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
     try {
       const response = await axios.request(options);
       const fixedNumber = response.data.bmi.toFixed(2);
-
+      if (response.status === 200) {
+        Toast.show({
+          type: "success",
+          text1: "Tu peticion se realizo correctamente!",
+        });
+      }
       setResultBMI(fixedNumber);
       if (fixedNumber < 18.5) {
         setCategoryBMI("Underweight");
@@ -57,6 +62,7 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
           type: "error",
           text1: "Se superaron la cantidad de peticiones ",
         });
+        setIsLoading(false);
       }
     }
   };

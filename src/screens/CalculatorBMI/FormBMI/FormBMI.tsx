@@ -27,13 +27,17 @@ const FormBMI = () => {
   const validateForm = (values: ValuesBMI) => {
     const errors: Partial<ValuesBMI> = {};
     if (!values.weight) {
-      errors.weight = "El peso es requerido";
+      errors.weight = "El peso es requerido.";
     }
+
     if (values.weight && parseFloat(values.weight) > 300) {
       errors.weight = "El peso máximo es 300 kg";
     }
     if (!values.height) {
-      errors.height = "La altura es requerida";
+      errors.height = "La altura es requerida.";
+    } else if (!/^\d{1,2}((\.|,)\d{1,2})?$/.test(values.height)) {
+      errors.height =
+        "La altura no es válida, despues del primer numero tiene que haber un punto o una coma.";
     }
 
     return errors;
