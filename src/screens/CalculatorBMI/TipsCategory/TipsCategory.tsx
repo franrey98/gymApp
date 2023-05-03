@@ -3,8 +3,6 @@ import { Text, View } from "react-native";
 import { BMICategoryIndicatorProps } from "../types";
 
 const TipsCategory = ({ categoryBMI = "" }: BMICategoryIndicatorProps) => {
-  console.log("Te llego esta categoria:", categoryBMI);
-
   const getBMIStatus = () => {
     if (categoryBMI === "Underweight") {
       return {

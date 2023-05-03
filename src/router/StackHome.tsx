@@ -3,6 +3,7 @@ import HomeExercises from "../screens/Home/HomeExercises";
 import CategorieScreen from "../screens/Home/CategorieScreen/CategorieScreen";
 import CardsMuscles from "../screens/Home/CardsMuscles/CardsMuscles";
 import RenderCards from "../screens/Home/CardsMuscles/RenderCards";
+import Exercises from "../screens/Home/Exercises/Exercises";
 
 const Stack = createStackNavigator();
 

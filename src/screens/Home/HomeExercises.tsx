@@ -1,6 +1,4 @@
-import { View, Text, StatusBar } from "react-native";
-import { colors } from "../../constants/colors";
-import { fonts } from "../../constants/fonts";
+import { StatusBar } from "react-native";
 import { useMuscles } from "../../hooks/useMuscles";
 import CardsMuscles from "./CardsMuscles/CardsMuscles";
 

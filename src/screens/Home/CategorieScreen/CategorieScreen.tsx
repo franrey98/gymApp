@@ -4,6 +4,8 @@ import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import CardsCategories from "./CardsCategories";
 import { useMuscles } from "../../../hooks/useMuscles";
+import Exercises from "../Exercises/Exercises";
+import { useEffect } from "react";
 
 type RootStackParamList = {
   HomeMatchs: undefined;
@@ -26,15 +28,33 @@ type Props = {
 };
 
 const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
-  const { categories } = useMuscles();
+  const { categories, setExercises, exercises } = useMuscles();
+
   const { muscle } = route.params;
+
+  useEffect(() => {
+    const clearMyArray = () => {
+      setExercises([]);
+    };
+
+    return () => {
+      clearMyArray();
+    };
+  }, [navigation]);
+
   return (
     <View>
-      <Text>
-        Seleccionaste {muscle}, ahora selecciona la categoria para personalizar
-        tu entrenamiento!
-      </Text>
-      <CardsCategories categories={categories} />
+      {exercises.length > 0 ? (
+        <Exercises />
+      ) : (
+        <>
+          <Text>
+            Seleccionaste {muscle}, ahora selecciona la categoria para
+            personalizar tu entrenamiento!
+          </Text>
+          <CardsCategories categories={categories} />
+        </>
+      )}
     </View>
   );
 };

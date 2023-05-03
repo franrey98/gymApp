@@ -16,6 +16,7 @@ const RenderCards = ({ muscle, category, navigation }: any) => {
       getExercises("");
     }
   };
+
   return (
     <TouchableOpacity
       onPress={handleSubmit}
