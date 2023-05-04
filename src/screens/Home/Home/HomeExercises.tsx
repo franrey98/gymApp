@@ -1,6 +1,6 @@
 import { StatusBar } from "react-native";
-import { useMuscles } from "../../hooks/useMuscles";
-import CardsMuscles from "./CardsMuscles/CardsMuscles";
+import HomeCard from "../../../components/HomeCard";
+import { useMuscles } from "../../../hooks/useMuscles";
 
 const HomeExercises = ({ navigation }: any) => {
   const { muscles } = useMuscles();
@@ -8,7 +8,7 @@ const HomeExercises = ({ navigation }: any) => {
   return (
     <>
       <StatusBar backgroundColor={"#000002"} />
-      <CardsMuscles muscles={muscles} navigation={navigation} />
+      <HomeCard data={muscles} navigation={navigation} />
     </>
   );
 };

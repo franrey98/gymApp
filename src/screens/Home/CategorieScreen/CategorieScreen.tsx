@@ -2,10 +2,10 @@ import React from "react";
 import { View, Text } from "react-native";
 import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import CardsCategories from "./CardsCategories";
 import { useMuscles } from "../../../hooks/useMuscles";
 import Exercises from "../Exercises/Exercises";
 import { useEffect } from "react";
+import HomeCard from "../../../components/HomeCard";
 
 type RootStackParamList = {
   HomeMatchs: undefined;
@@ -23,14 +23,14 @@ type CategorieScreenNavigationProp = StackNavigationProp<
 >;
 
 type Props = {
-  route: CategorieScreenRouteProp;
-  navigation: CategorieScreenNavigationProp;
+  route?: CategorieScreenRouteProp;
+  navigation?: CategorieScreenNavigationProp;
 };
 
 const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
   const { categories, setExercises, exercises } = useMuscles();
 
-  const { muscle } = route.params;
+  const { muscle } = route!.params;
 
   useEffect(() => {
     const clearMyArray = () => {
@@ -52,7 +52,7 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
             Seleccionaste {muscle}, ahora selecciona la categoria para
             personalizar tu entrenamiento!
           </Text>
-          <CardsCategories categories={categories} />
+          <HomeCard data={categories} />
         </>
       )}
     </View>

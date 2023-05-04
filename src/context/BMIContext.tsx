@@ -1,11 +1,8 @@
 import { createContext, useState } from "react";
 import { API_URL_BASE_BMI, API_KEY } from "@env";
-import Toast from "react-native-toast-message";
 import axios from "axios";
-
-interface Props {
-  children: React.ReactNode;
-}
+import { Props } from "../types/props";
+import { toastAlert } from "../utils/alerts";
 
 interface BMIContextState {
   calculateBMI: (weight: number, height: number) => Promise<void>;
@@ -40,10 +37,7 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
       const response = await axios.request(options);
       const fixedNumber = response.data.bmi.toFixed(2);
       if (response.status === 200) {
-        Toast.show({
-          type: "success",
-          text1: "Tu peticion se realizo correctamente!",
-        });
+        toastAlert("success", "Tu peticion se realizo correctamente!");
       }
       setResultBMI(fixedNumber);
       if (fixedNumber < 18.5) {
@@ -58,10 +52,7 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
       setIsLoading(false);
     } catch (error: any) {
       if (error.response.status === 429) {
-        Toast.show({
-          type: "error",
-          text1: "Se superaron la cantidad de peticiones ",
-        });
+        toastAlert("error", "Se superaron la cantidad de peticiones");
         setIsLoading(false);
       }
     }

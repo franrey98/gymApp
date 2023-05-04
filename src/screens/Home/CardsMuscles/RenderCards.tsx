@@ -3,16 +3,24 @@ import React from "react";
 import { TouchableOpacity, Text } from "react-native";
 import { useMuscles } from "../../../hooks/useMuscles";
 
-const RenderCards = ({ muscle, category, navigation }: any) => {
+interface PropsRenderCard {
+  data: string;
+  navigation?: any;
+}
+
+const RenderCards = ({ data, navigation }: PropsRenderCard) => {
   const route = useRoute();
+
   const { setCategoryToSearch, setMuscleToSearch, getExercises } = useMuscles();
 
   const handleSubmit = () => {
     if (route.name !== "CategorieScreen") {
-      setMuscleToSearch(muscle);
-      navigation.navigate("CategorieScreen", { muscle });
+      if (data) {
+        setMuscleToSearch(data);
+      }
+      navigation.navigate("CategorieScreen", { data });
     } else {
-      setCategoryToSearch(category);
+      setCategoryToSearch(data);
       getExercises("");
     }
   };
@@ -28,8 +36,7 @@ const RenderCards = ({ muscle, category, navigation }: any) => {
         flex: 1,
       }}
     >
-      {muscle && <Text style={{ textAlign: "center" }}>{muscle}</Text>}
-      {category && <Text style={{ textAlign: "center" }}>{category}</Text>}
+      {data && <Text style={{ textAlign: "center" }}>{data}</Text>}
     </TouchableOpacity>
   );
 };

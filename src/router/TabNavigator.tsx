@@ -3,7 +3,7 @@ import CalculatorBMI from "../screens/CalculatorBMI/CalculatorBMI/CalculatorBMI"
 import Search from "../screens/search/Search";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../constants/colors";
-import HomeExercises from "../screens/Home/HomeExercises";
+import HomeExercises from "../screens/Home/Home/HomeExercises";
 import StackHome from "./StackHome";
 
 const BottomTab = createBottomTabNavigator();

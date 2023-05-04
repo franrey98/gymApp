@@ -10,9 +10,15 @@ const Exercises = () => {
     <View>
       <Text>Ejercicios especificos</Text>
       <ScrollView>
-        {exercises.map((items) => (
-          <CardExercises key={items.id} exercises={items} />
-        ))}
+        {exercises &&
+          exercises.map((items) => {
+            if (typeof items === "object") {
+              return <CardExercises key={items["id"]} exercises={items} />;
+            } else {
+              console.log("Error: item no es de tipo Exercises", items);
+              return null;
+            }
+          })}
       </ScrollView>
     </View>
   );

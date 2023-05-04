@@ -1,12 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { API_URL_BASE_MUSCLES, API_KEY } from "@env";
 import axios from "axios";
-import { Exercises } from "../types/exercises";
-
-interface Props {
-  children: React.ReactNode;
-}
-
+import { Props } from "../types/props";
 interface ContextProps {
   muscles: string[];
   categories: string[];
@@ -25,14 +20,12 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
   const [muscles, setMuscles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [exercises, setExercises] = useState([]);
+  console.log(exercises);
   const [muscleToSearch, setMuscleToSearch] = useState("");
   const [categoryToSearch, setCategoryToSearch] = useState("");
 
-  console.log("desde context:", exercises);
-
   const getExercises = async () => {
     if (muscleToSearch !== "" && categoryToSearch !== "") {
-      console.log("desde get exercises", muscleToSearch, categoryToSearch);
       const options = {
         method: "GET",
         url: `${API_URL_BASE_MUSCLES}`,
