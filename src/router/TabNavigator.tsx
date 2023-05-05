@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CalculatorBMI from "../screens/CalculatorBMI/CalculatorBMI/CalculatorBMI";
-import Search from "../screens/search/Search";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../constants/colors";
-import HomeExercises from "../screens/Home/Home/HomeExercises";
 import StackHome from "./StackHome";
+import Discover from "../screens/search/Discover";
+import LinearGradientApp from "../components/LinearGradientApp";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -16,8 +16,8 @@ const TabNavigator = () => {
           let iconName: any;
           if (route.name === "HomeMatchs") {
             iconName = focused ? "home" : "home";
-          } else if (route.name === "Search") {
-            iconName = focused ? "search" : "search";
+          } else if (route.name === "Discover") {
+            iconName = focused ? "compass" : "compass";
           } else if (route.name === "IMC") {
             iconName = focused ? "weight" : "weight";
           }
@@ -28,8 +28,6 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: colors.grey,
         tabBarStyle: {
           backgroundColor: "white",
-          borderTopWidth: 0.5,
-          borderTopColor: "#b6e4fa",
         },
         headerStyle: {
           backgroundColor: colors.secondary,
@@ -40,11 +38,14 @@ const TabNavigator = () => {
         name="HomeMatchs"
         options={{
           title: "Inicio",
-          headerTitle: "Ejercicios en casa",
+          headerTitle: "Ejercicios".toUpperCase(),
           headerTitleAlign: "left",
+          headerStatusBarHeight: 10,
+          headerShown: false,
           headerTitleStyle: {
             color: "white",
-            fontSize: 18,
+            fontSize: 20,
+            height: "100%",
           },
           headerStyle: {
             backgroundColor: colors.secondary,
@@ -54,8 +55,8 @@ const TabNavigator = () => {
       />
       <BottomTab.Screen
         options={{
-          headerTitle: "Buscador",
-          tabBarLabel: "Buscador",
+          headerTitle: "Descubre",
+          tabBarLabel: "Descubre",
           headerTitleAlign: "left",
           headerTitleStyle: {
             color: "white",
@@ -65,8 +66,8 @@ const TabNavigator = () => {
             backgroundColor: colors.secondary,
           },
         }}
-        name="Search"
-        component={Search}
+        name="Discover"
+        component={Discover}
       />
       <BottomTab.Screen
         options={{

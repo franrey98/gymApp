@@ -2,10 +2,11 @@ import "react-native-gesture-handler";
 import Router from "./src/router/Router";
 import { MusclesProvider } from "./src/context/MusclesContext";
 import { BMIProvider } from "./src/context/BMIContext";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { View, ActivityIndicator } from "react-native";
+import Introduction from "./src/components/Introduction";
 
 const AppStateMuscles = ({ children }: any) => {
   return <MusclesProvider>{children}</MusclesProvider>;
@@ -22,6 +23,7 @@ const App = () => {
   });
 
   const [isLoading, setIsLoading] = useState(true);
+  const [showIntroduction, setShowIntroduction] = useState(true);
 
   useEffect(() => {
     const prepare = async () => {
@@ -48,14 +50,20 @@ const App = () => {
     );
   }
 
+  const handleIntroductionClose = () => {
+    setShowIntroduction(false);
+  };
+
   return (
-    <View style={{ flex: 1 }}>
-      <AppStateMuscles>
-        <AppStateBMI>
+    <AppStateMuscles>
+      <AppStateBMI>
+        {showIntroduction ? (
+          <Introduction onClose={handleIntroductionClose} />
+        ) : (
           <Router />
-        </AppStateBMI>
-      </AppStateMuscles>
-    </View>
+        )}
+      </AppStateBMI>
+    </AppStateMuscles>
   );
 };
 

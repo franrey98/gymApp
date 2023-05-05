@@ -10,6 +10,7 @@ interface PropsExercises {
 
 const CardExercises = ({ exercises }: PropsExercises) => {
   const video = useRef<Video>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [status, setStatus] = useState<any>({});
   return (
     <View>
@@ -33,20 +34,23 @@ const CardExercises = ({ exercises }: PropsExercises) => {
                 useNativeControls={true}
                 isLooping
                 onPlaybackStatusUpdate={(status) => setStatus(status)}
+                onLoad={() => setIsLoaded(true)}
               />
             </View>
           ))}
       </View>
-      <View style={{}}>
-        <Button
-          title={status.isPlaying ? "Pausa" : "Reproducir"}
-          onPress={() =>
-            status.isPlaying
-              ? video.current?.pauseAsync()
-              : video.current?.playAsync()
-          }
-        />
-      </View>
+      {isLoaded && (
+        <View style={{}}>
+          <Button
+            title={status.isPlaying ? "Pausa" : "Reproducir"}
+            onPress={() =>
+              status.isPlaying
+                ? video.current?.pauseAsync()
+                : video.current?.playAsync()
+            }
+          />
+        </View>
+      )}
       <Text>{exercises?.youtubeURL}</Text>
     </View>
   );

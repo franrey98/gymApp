@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { BMICategoryIndicatorProps } from "../types";
+import { BMICategoryIndicatorProps } from "../../../types/props";
 
 const TipsCategory = ({ categoryBMI = "" }: BMICategoryIndicatorProps) => {
   const getBMIStatus = () => {

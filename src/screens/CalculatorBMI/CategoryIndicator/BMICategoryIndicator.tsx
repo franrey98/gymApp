@@ -1,4 +1,4 @@
-import { BMICategoryIndicatorProps } from "../types";
+import { BMICategoryIndicatorProps } from "../../../types/props";
 import Donut from "./Donut";
 
 const BMICategoryIndicator = ({

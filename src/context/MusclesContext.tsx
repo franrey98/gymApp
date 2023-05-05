@@ -8,6 +8,7 @@ interface ContextProps {
   exercises: string[];
   categoryToSearch: string;
   muscleToSearch: string;
+  isLoading: boolean;
   getExercises: (muscle: any) => Promise<void>;
   setMuscleToSearch: React.Dispatch<React.SetStateAction<string>>;
   setCategoryToSearch: React.Dispatch<React.SetStateAction<string>>;
@@ -17,15 +18,18 @@ interface ContextProps {
 export const MusclesContext = createContext<ContextProps | null>(null);
 
 export const MusclesProvider: React.FC<Props> = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [muscles, setMuscles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [exercises, setExercises] = useState([]);
-  console.log(exercises);
+
   const [muscleToSearch, setMuscleToSearch] = useState("");
   const [categoryToSearch, setCategoryToSearch] = useState("");
 
   const getExercises = async () => {
     if (muscleToSearch !== "" && categoryToSearch !== "") {
+      setIsLoading(true);
       const options = {
         method: "GET",
         url: `${API_URL_BASE_MUSCLES}`,
@@ -40,6 +44,9 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
         setExercises(response.data.slice(0, 6));
         setMuscleToSearch("");
         setCategoryToSearch("");
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
       } catch (error) {
         console.error(error);
       }
@@ -47,6 +54,7 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
   };
 
   const getAttributes = async () => {
+    setIsLoading(true);
     const options = {
       method: "GET",
       url: `${API_URL_BASE_MUSCLES}/attributes`,
@@ -60,6 +68,9 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
       const response = await axios.request(options);
       setMuscles(response.data.muscles);
       setCategories(response.data.categories);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     } catch (error) {
       console.error(error);
     }
@@ -83,6 +94,7 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
         exercises,
         muscleToSearch,
         categoryToSearch,
+        isLoading,
         getExercises,
         setMuscleToSearch,
         setCategoryToSearch,

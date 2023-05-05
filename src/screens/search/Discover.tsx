@@ -1,9 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
-import BodyMap from "./BodyMap/BodyMap";
-import WebView from "react-native-webview";
 
-const Search = () => {
+const Discover = () => {
   return (
     <View>
       <Text>Fracaso el bodymap3d</Text>
@@ -11,4 +9,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Discover;

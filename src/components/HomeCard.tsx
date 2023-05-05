@@ -9,17 +9,14 @@ type Props = {
 
 const HomeCard: React.FC<Props> = ({ data, navigation }) => {
   return (
-    <View>
-      <FlatList
-        data={data}
-        renderItem={({ item }) => {
-          return <RenderCards data={item} navigation={navigation} />;
-        }}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={2}
-        contentContainerStyle={{ paddingHorizontal: 10 }}
-      />
-    </View>
+    <FlatList
+      data={data}
+      renderItem={({ item }) => {
+        return <RenderCards data={item} navigation={navigation} />;
+      }}
+      keyExtractor={(item, index) => index.toString()}
+      numColumns={2}
+    />
   );
 };
 

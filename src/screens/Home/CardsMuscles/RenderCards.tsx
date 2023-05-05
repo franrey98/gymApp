@@ -1,6 +1,6 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import { useMuscles } from "../../../hooks/useMuscles";
 
 interface PropsRenderCard {
@@ -31,8 +31,7 @@ const RenderCards = ({ data, navigation }: PropsRenderCard) => {
       style={{
         borderWidth: 1,
         padding: 5,
-        marginHorizontal: 10,
-        marginVertical: 10,
+        marginVertical: 40,
         flex: 1,
       }}
     >
