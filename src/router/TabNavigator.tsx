@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../constants/colors";
 import StackHome from "./StackHome";
 import Discover from "../screens/search/Discover";
-import LinearGradientApp from "../components/LinearGradientApp";
+import { useRoute } from "@react-navigation/native";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -37,19 +37,8 @@ const TabNavigator = () => {
       <BottomTab.Screen
         name="HomeMatchs"
         options={{
-          title: "Inicio",
-          headerTitle: "Ejercicios".toUpperCase(),
-          headerTitleAlign: "left",
-          headerStatusBarHeight: 10,
           headerShown: false,
-          headerTitleStyle: {
-            color: "white",
-            fontSize: 20,
-            height: "100%",
-          },
-          headerStyle: {
-            backgroundColor: colors.secondary,
-          },
+          tabBarLabel: "Inicio",
         }}
         component={StackHome}
       />

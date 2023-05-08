@@ -1,6 +1,13 @@
 import { useRoute } from "@react-navigation/native";
 import React from "react";
-import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
+import {
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+  ImageBackground,
+  StyleSheet,
+} from "react-native";
+import { colors } from "../../../constants/colors";
 import { useMuscles } from "../../../hooks/useMuscles";
 
 interface PropsRenderCard {
@@ -10,7 +17,6 @@ interface PropsRenderCard {
 
 const RenderCards = ({ data, navigation }: PropsRenderCard) => {
   const route = useRoute();
-
   const { setCategoryToSearch, setMuscleToSearch, getExercises } = useMuscles();
 
   const handleSubmit = () => {
@@ -27,15 +33,23 @@ const RenderCards = ({ data, navigation }: PropsRenderCard) => {
 
   return (
     <TouchableOpacity
+      activeOpacity={0.6}
       onPress={handleSubmit}
       style={{
         borderWidth: 1,
-        padding: 5,
-        marginVertical: 40,
+        borderColor: colors.primaryLight,
+        padding: 10,
+        marginVertical: 15,
         flex: 1,
+        borderRadius: 0,
+        backgroundColor: colors.primary,
       }}
     >
-      {data && <Text style={{ textAlign: "center" }}>{data}</Text>}
+      {data && (
+        <Text style={{ textAlign: "center", color: "white", fontSize: 16 }}>
+          {data.toUpperCase()}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 };

@@ -28,9 +28,7 @@ type Props = {
 };
 
 const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
-  const { categories, setExercises, exercises } = useMuscles();
-
-  const { muscle } = route!.params;
+  const { categories, setExercises, exercises, muscleToSearch } = useMuscles();
 
   useEffect(() => {
     const clearMyArray = () => {
@@ -43,13 +41,13 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={{ marginHorizontal: 20 }}>
       {exercises.length > 0 ? (
         <Exercises />
       ) : (
         <>
-          <Text>
-            Seleccionaste {muscle}, ahora selecciona la categoria para
+          <Text style={{ marginTop: 20, fontSize: 18 }}>
+            Seleccionaste {muscleToSearch}, ahora selecciona la categoria para
             personalizar tu entrenamiento!
           </Text>
           <HomeCard data={categories} />

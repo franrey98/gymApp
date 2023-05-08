@@ -1,6 +1,6 @@
 import {
   ActivityIndicator,
-  ScrollView,
+  SafeAreaView,
   StatusBar,
   Text,
   View,
@@ -8,7 +8,6 @@ import {
 import HomeCard from "../../../components/HomeCard";
 import { useMuscles } from "../../../hooks/useMuscles";
 import { colors } from "../../../constants/colors";
-import { LinearGradient } from "expo-linear-gradient";
 import LinearGradientApp from "../../../components/LinearGradientApp";
 
 const HomeExercises = ({ navigation }: any) => {
@@ -18,26 +17,44 @@ const HomeExercises = ({ navigation }: any) => {
     <>
       <StatusBar barStyle="light-content" backgroundColor={colors.secondary} />
       <LinearGradientApp>
-        <Text
+        <View
           style={{
             marginHorizontal: 20,
-            paddingBottom: 50,
+            backgroundColor: "white",
+            height: "50%",
+            borderRadius: 5,
+            justifyContent: "center",
           }}
         >
-          Bienvenido a nuestra página de Ejercicios para el Gimnasio. Aquí
-          asdasd
-        </Text>
+          <Text
+            style={{
+              textAlign: "center",
+              fontWeight: "500",
+              marginHorizontal: 5,
+            }}
+          >
+            En esta sección vas a encontrar todo tipo de ejercicios
+          </Text>
+        </View>
       </LinearGradientApp>
-      <View
-        style={{
-          marginHorizontal: 20,
-        }}
-      >
-        {isLoading ? (
-          <ActivityIndicator size={30} />
-        ) : (
-          <HomeCard data={muscles} navigation={navigation} />
-        )}
+      <View style={{ backgroundColor: "white", flex: 1 }}>
+        <View
+          style={{
+            marginHorizontal: 20,
+          }}
+        >
+          {isLoading ? (
+            <View
+              style={{
+                marginTop: 50,
+              }}
+            >
+              <ActivityIndicator size={30} />
+            </View>
+          ) : (
+            <HomeCard data={muscles} navigation={navigation} />
+          )}
+        </View>
       </View>
     </>
   );

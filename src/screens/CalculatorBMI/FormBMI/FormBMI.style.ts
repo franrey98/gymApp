@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: "#c7e4e8",
     backgroundColor: "#d8edf0",
+    marginTop: 40,
   },
   input: {
     width: "100%",

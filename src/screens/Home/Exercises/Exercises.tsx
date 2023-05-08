@@ -12,7 +12,6 @@ const Exercises = () => {
         <ActivityIndicator size={30} />
       ) : (
         <>
-          <Text>Ejercicios especificos</Text>
           <ScrollView>
             {exercises &&
               exercises.map((items) => {

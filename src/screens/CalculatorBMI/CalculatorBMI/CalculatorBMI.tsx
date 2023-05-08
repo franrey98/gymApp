@@ -6,17 +6,13 @@ import FormBMI from "../FormBMI/FormBMI";
 import { styles } from "./CalculatorBMI.styled";
 import TipsCategory from "../TipsCategory/TipsCategory";
 import Toast from "react-native-toast-message";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const CalculatorBMI = () => {
   const { resultBMI, categoryBMI, isLoading } = useBMI();
 
   return (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-      }}
-    >
+    <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
       <Toast position="bottom" />
       <View style={styles.container}>
         <Text style={styles.textIntroduction}>
@@ -52,7 +48,7 @@ const CalculatorBMI = () => {
           </View>
         </ScrollView>
       </View>
-    </View>
+    </KeyboardAwareScrollView>
   );
 };
 

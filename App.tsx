@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { View, ActivityIndicator } from "react-native";
-import Introduction from "./src/components/Introduction";
+import Introduction from "./src/components/Introduction/Introduction";
 
 const AppStateMuscles = ({ children }: any) => {
   return <MusclesProvider>{children}</MusclesProvider>;
@@ -23,7 +23,6 @@ const App = () => {
   });
 
   const [isLoading, setIsLoading] = useState(true);
-  const [showIntroduction, setShowIntroduction] = useState(true);
 
   useEffect(() => {
     const prepare = async () => {
@@ -50,18 +49,10 @@ const App = () => {
     );
   }
 
-  const handleIntroductionClose = () => {
-    setShowIntroduction(false);
-  };
-
   return (
     <AppStateMuscles>
       <AppStateBMI>
-        {showIntroduction ? (
-          <Introduction onClose={handleIntroductionClose} />
-        ) : (
-          <Router />
-        )}
+        <Introduction />
       </AppStateBMI>
     </AppStateMuscles>
   );
