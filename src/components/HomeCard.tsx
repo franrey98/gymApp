@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
-import { Dimensions, FlatList, View } from "react-native";
+import { Dimensions, FlatList } from "react-native";
 import RenderCards from "../screens/Home/CardsMuscles/RenderCards";
-import { useEffect, useState } from "react";
 
 type Props = {
   data: string[];

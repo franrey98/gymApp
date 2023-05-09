@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import HomeCard from "../../../components/HomeCard";
 
 type RootStackParamList = {
-  HomeMatchs: undefined;
+  Homepage: undefined;
   CategorieScreen: { muscle: string };
 };
 
@@ -28,11 +28,20 @@ type Props = {
 };
 
 const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
-  const { categories, setExercises, exercises, muscleToSearch } = useMuscles();
+  const {
+    categories,
+    setExercises,
+    setCategoryToSearch,
+    setMuscleToSearch,
+    exercises,
+    muscleToSearch,
+  } = useMuscles();
 
   useEffect(() => {
     const clearMyArray = () => {
       setExercises([]);
+      setCategoryToSearch("");
+      setMuscleToSearch("");
     };
 
     return () => {

@@ -14,7 +14,7 @@ const TabNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: any;
-          if (route.name === "HomeMatchs") {
+          if (route.name === "Homepage") {
             iconName = focused ? "home" : "home";
           } else if (route.name === "Discover") {
             iconName = focused ? "compass" : "compass";
@@ -35,7 +35,7 @@ const TabNavigator = () => {
       })}
     >
       <BottomTab.Screen
-        name="HomeMatchs"
+        name="Homepage"
         options={{
           headerShown: false,
           tabBarLabel: "Inicio",

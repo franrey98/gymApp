@@ -9,9 +9,28 @@ import HomeCard from "../../../components/HomeCard";
 import { useMuscles } from "../../../hooks/useMuscles";
 import { colors } from "../../../constants/colors";
 import LinearGradientApp from "../../../components/LinearGradientApp";
+import { useEffect } from "react";
 
 const HomeExercises = ({ navigation }: any) => {
-  const { muscles, isLoading } = useMuscles();
+  const {
+    muscles,
+    isLoading,
+    setExercises,
+    setCategoryToSearch,
+    setMuscleToSearch,
+  } = useMuscles();
+
+  useEffect(() => {
+    const clearMyArray = () => {
+      setExercises([]);
+      setCategoryToSearch("");
+      setMuscleToSearch("");
+    };
+
+    return () => {
+      clearMyArray();
+    };
+  }, [navigation]);
 
   return (
     <>

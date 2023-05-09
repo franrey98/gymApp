@@ -10,6 +10,7 @@ interface ContextProps {
   muscleToSearch: string;
   isLoading: boolean;
   getExercises: (muscle: any) => Promise<void>;
+  getNewExercises: () => void;
   setMuscleToSearch: React.Dispatch<React.SetStateAction<string>>;
   setCategoryToSearch: React.Dispatch<React.SetStateAction<string>>;
   setExercises: React.Dispatch<React.SetStateAction<never[]>>;
@@ -27,6 +28,10 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
   const [muscleToSearch, setMuscleToSearch] = useState("");
   const [categoryToSearch, setCategoryToSearch] = useState("");
 
+  console.log("musculo a buscar:", muscleToSearch);
+  console.log("categoria a buscar:", categoryToSearch);
+  console.log("exercises a buscar:", exercises.length);
+
   const getExercises = async () => {
     if (muscleToSearch !== "" && categoryToSearch !== "") {
       setIsLoading(true);
@@ -42,8 +47,6 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
       try {
         const response = await axios.request(options);
         setExercises(response.data.slice(0, 6));
-        setMuscleToSearch("");
-        setCategoryToSearch("");
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
@@ -51,6 +54,10 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
         console.error(error);
       }
     }
+  };
+
+  const getNewExercises = () => {
+    console.log(muscleToSearch, categoryToSearch);
   };
 
   const getAttributes = async () => {
@@ -96,6 +103,7 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
         categoryToSearch,
         isLoading,
         getExercises,
+        getNewExercises,
         setMuscleToSearch,
         setCategoryToSearch,
         setExercises,

@@ -29,7 +29,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
             <Text style={styles.title}>{exercises?.exercise_name}</Text>
           </View>
           <Text style={styles.details}>
-            Detalles:
+            Detalles:{" "}
             {showAllDetails ? (
               exercises?.details
             ) : exercises?.details === undefined ||
