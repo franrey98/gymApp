@@ -9,7 +9,6 @@ type Props = {
 };
 
 const windowHeight = Dimensions.get("window").height;
-console.log(windowHeight);
 
 const HomeCard: React.FC<Props> = ({ data, navigation }) => {
   return (

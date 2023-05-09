@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import { Exercises } from "../../../types/exercises";
 import { Video, ResizeMode } from "expo-av";
-import { Button } from "react-native";
 import { useState } from "react";
 import { colors } from "../../../constants/colors";
 interface PropsExercises {
@@ -19,23 +18,53 @@ interface PropsExercises {
 const CardExercises = ({ exercises }: PropsExercises) => {
   const video = useRef<Video>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showAllDetails, setShowAllDetails] = useState(false);
   const [status, setStatus] = useState<any>({});
+
   return (
     <View style={{ marginBottom: 10 }}>
       <TouchableOpacity style={styles.container}>
         <View style={styles.content}>
-          <Text style={styles.title}>{exercises?.exercise_name}</Text>
-          <Text style={styles.details}>Detalles: {exercises?.details}</Text>
+          <View style={styles.titleContent}>
+            <Text style={styles.title}>{exercises?.exercise_name}</Text>
+          </View>
+          <Text style={styles.details}>
+            Detalles:
+            {showAllDetails ? (
+              exercises?.details
+            ) : exercises?.details === undefined ||
+              exercises?.details === "" ? (
+              <Text>No hay detalles disponibles</Text>
+            ) : (
+              `${exercises?.details?.slice(0, 400)}...`
+            )}
+            {exercises?.details?.length > 400 && !showAllDetails && (
+              <TouchableOpacity onPress={() => setShowAllDetails(true)}>
+                <Text style={styles.detailsLink}>Ver más</Text>
+              </TouchableOpacity>
+            )}
+          </Text>
+
           <Text style={styles.category}>Categoría: {exercises?.Category}</Text>
           <Text style={styles.muscle}>
             Músculos: {exercises?.target.Primary.join(", ")}
           </Text>
-          <Text style={styles.steps}>Pasos a seguir: {exercises?.steps}</Text>
+          <Text style={{ color: "white" }}>
+            Pasos a seguir:{" "}
+            {exercises?.steps?.join(",") === "" ? (
+              <Text>No hay informacion disponible</Text>
+            ) : (
+              <Text style={styles.steps}>{exercises?.steps}</Text>
+            )}
+          </Text>
+
           <TouchableOpacity
             onPress={() => Linking.openURL(exercises?.youtubeURL)}
             style={{ marginBottom: 20 }}
           >
-            <Text style={styles.youtubeLink}>{exercises?.youtubeURL}</Text>
+            {exercises?.youtubeURL && (
+              <Text style={styles.youtubeLink}>{exercises?.youtubeURL}</Text>
+            )}
           </TouchableOpacity>
         </View>
       </TouchableOpacity>
@@ -46,7 +75,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
               <Video
                 ref={video}
                 source={{ uri: url }}
-                resizeMode={ResizeMode.COVER}
+                resizeMode={ResizeMode.CONTAIN}
                 style={{ width: "100%", height: 200 }}
                 useNativeControls={true}
                 isLooping
@@ -96,26 +125,41 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
+  titleContent: {
+    padding: 5,
+    backgroundColor: "white",
+    borderRadius: 5,
+    marginVertical: 5,
+  },
   title: {
     fontWeight: "bold",
-    color: "white",
     fontSize: 18,
     marginBottom: 5,
+    textAlign: "center",
   },
   details: {
     marginBottom: 5,
+    color: "#d2e7ee",
   },
   category: {
     marginBottom: 5,
+    color: "#d2e7ee",
   },
   muscle: {
     marginBottom: 5,
+    color: "#d2e7ee",
   },
   steps: {
     marginBottom: 5,
+    color: "#d2e7ee",
   },
   youtubeLink: {
+    color: "#0044ff",
+  },
+  detailsLink: {
     color: "blue",
+    textDecorationLine: "underline",
+    marginLeft: 5,
   },
 });
 
