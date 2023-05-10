@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import {
   View,
   Text,
-  ScrollView,
   Linking,
   TouchableOpacity,
   StyleSheet,
@@ -11,11 +10,15 @@ import { Exercises } from "../../../types/exercises";
 import { Video, ResizeMode } from "expo-av";
 import { useState } from "react";
 import { colors } from "../../../constants/colors";
+import Icon from "react-native-vector-icons/FontAwesome";
+import useFav from "../../../hooks/useFav";
 interface PropsExercises {
   exercises: Exercises;
 }
 
 const CardExercises = ({ exercises }: PropsExercises) => {
+  const { addFavExercise } = useFav();
+
   const video = useRef<Video>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [showAllDetails, setShowAllDetails] = useState(false);
@@ -23,10 +26,13 @@ const CardExercises = ({ exercises }: PropsExercises) => {
 
   return (
     <View style={{ marginBottom: 10 }}>
-      <TouchableOpacity style={styles.container}>
+      <View style={styles.container}>
         <View style={styles.content}>
           <View style={styles.titleContent}>
             <Text style={styles.title}>{exercises?.exercise_name}</Text>
+            <TouchableOpacity onPress={() => addFavExercise(exercises.id)}>
+              <Icon name="star-o" color={colors.primary} size={20} />
+            </TouchableOpacity>
           </View>
           <Text style={styles.details}>
             Detalles:{" "}
@@ -67,7 +73,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
             )}
           </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+      </View>
       <View style={{ marginTop: -30 }}>
         {Array.isArray(exercises?.videoURL) &&
           exercises?.videoURL.slice(0, 1).map((url) => (
@@ -76,7 +82,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
                 ref={video}
                 source={{ uri: url }}
                 resizeMode={ResizeMode.CONTAIN}
-                style={{ width: "100%", height: 200 }}
+                style={{ width: "100%", height: 220 }}
                 useNativeControls={true}
                 isLooping
                 onPlaybackStatusUpdate={(status) => setStatus(status)}
@@ -92,6 +98,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
             padding: 10,
             borderBottomLeftRadius: 10,
             borderBottomRightRadius: 10,
+            marginTop: -10,
           }}
           onPress={() =>
             status.isPlaying
@@ -118,14 +125,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.primary,
     borderRadius: 10,
-    padding: 10,
-    marginVertical: 20,
+    padding: 15,
+    marginTop: 10,
     elevation: 2,
   },
   content: {
     flex: 1,
   },
   titleContent: {
+    flexDirection: "row",
+    alignItems: "baseline",
     padding: 5,
     backgroundColor: "white",
     borderRadius: 5,
@@ -136,6 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
     textAlign: "center",
+    flex: 1,
   },
   details: {
     marginBottom: 5,

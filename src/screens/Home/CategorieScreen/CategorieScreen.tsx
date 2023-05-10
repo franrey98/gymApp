@@ -35,6 +35,7 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
     setMuscleToSearch,
     exercises,
     muscleToSearch,
+    setLimit,
   } = useMuscles();
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
       setExercises([]);
       setCategoryToSearch("");
       setMuscleToSearch("");
+      setLimit(6);
     };
 
     return () => {

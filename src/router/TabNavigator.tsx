@@ -3,8 +3,7 @@ import CalculatorBMI from "../screens/CalculatorBMI/CalculatorBMI/CalculatorBMI"
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../constants/colors";
 import StackHome from "./StackHome";
-import Discover from "../screens/search/Discover";
-import { useRoute } from "@react-navigation/native";
+import Favorites from "../screens/Favorites/Favorites";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -15,9 +14,9 @@ const TabNavigator = () => {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: any;
           if (route.name === "Homepage") {
-            iconName = focused ? "home" : "home";
-          } else if (route.name === "Discover") {
-            iconName = focused ? "compass" : "compass";
+            iconName = focused ? "dumbbell" : "dumbbell";
+          } else if (route.name === "Favorites") {
+            iconName = focused ? "star" : "star";
           } else if (route.name === "IMC") {
             iconName = focused ? "weight" : "weight";
           }
@@ -38,14 +37,14 @@ const TabNavigator = () => {
         name="Homepage"
         options={{
           headerShown: false,
-          tabBarLabel: "Inicio",
+          tabBarLabel: "Ejercicios",
         }}
         component={StackHome}
       />
       <BottomTab.Screen
         options={{
-          headerTitle: "Descubre",
-          tabBarLabel: "Descubre",
+          headerTitle: "Favoritos",
+          tabBarLabel: "Favoritos",
           headerTitleAlign: "left",
           headerTitleStyle: {
             color: "white",
@@ -55,8 +54,8 @@ const TabNavigator = () => {
             backgroundColor: colors.secondary,
           },
         }}
-        name="Discover"
-        component={Discover}
+        name="Favorites"
+        component={Favorites}
       />
       <BottomTab.Screen
         options={{

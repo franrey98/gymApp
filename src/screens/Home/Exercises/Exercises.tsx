@@ -3,23 +3,23 @@ import {
   ActivityIndicator,
   ScrollView,
   Text,
-  View,
   TouchableOpacity,
 } from "react-native";
 import { useMuscles } from "../../../hooks/useMuscles";
 import CardExercises from "./CardExercises";
 const Exercises = () => {
-  const { exercises, isLoading, getNewExercises } = useMuscles();
+  const { exercises, isLoading, setLimit, limit, totalExercises } =
+    useMuscles();
 
   return (
-    <View>
+    <>
       {isLoading ? (
         <ActivityIndicator size={30} />
       ) : (
         <>
           <ScrollView>
             {exercises &&
-              exercises.map((items) => {
+              exercises.slice(0, limit).map((items) => {
                 if (typeof items === "object") {
                   return <CardExercises key={items["id"]} exercises={items} />;
                 } else {
@@ -27,23 +27,29 @@ const Exercises = () => {
                   return null;
                 }
               })}
-            <TouchableOpacity
-              style={{
-                backgroundColor: "#5e1e66",
-                padding: 5,
-                marginVertical: 10,
-                borderRadius: 5,
-              }}
-              onPress={getNewExercises}
-            >
-              <Text style={{ textAlign: "center", color: "white" }}>
-                Ver mas
+            {limit < totalExercises ? (
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#5e1e66",
+                  padding: 5,
+                  marginVertical: 10,
+                  borderRadius: 5,
+                }}
+                onPress={() => setLimit(limit + 6)}
+              >
+                <Text style={{ textAlign: "center", color: "white" }}>
+                  Ver mas
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <Text style={{ textAlign: "center", marginVertical: 10 }}>
+                No hay mas ejercicios para mostrar!
               </Text>
-            </TouchableOpacity>
+            )}
           </ScrollView>
         </>
       )}
-    </View>
+    </>
   );
 };
 

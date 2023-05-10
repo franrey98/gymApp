@@ -18,6 +18,7 @@ const HomeExercises = ({ navigation }: any) => {
     setExercises,
     setCategoryToSearch,
     setMuscleToSearch,
+    setLimit,
   } = useMuscles();
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const HomeExercises = ({ navigation }: any) => {
       setExercises([]);
       setCategoryToSearch("");
       setMuscleToSearch("");
+      setLimit(6);
     };
 
     return () => {

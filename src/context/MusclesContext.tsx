@@ -9,8 +9,10 @@ interface ContextProps {
   categoryToSearch: string;
   muscleToSearch: string;
   isLoading: boolean;
+  limit: number;
+  setLimit: any;
+  totalExercises: number;
   getExercises: (muscle: any) => Promise<void>;
-  getNewExercises: () => void;
   setMuscleToSearch: React.Dispatch<React.SetStateAction<string>>;
   setCategoryToSearch: React.Dispatch<React.SetStateAction<string>>;
   setExercises: React.Dispatch<React.SetStateAction<never[]>>;
@@ -21,16 +23,15 @@ export const MusclesContext = createContext<ContextProps | null>(null);
 export const MusclesProvider: React.FC<Props> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
+  const [limit, setLimit] = useState(6);
+  const [totalExercises, setTotalExercises] = useState(0);
+
   const [muscles, setMuscles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [exercises, setExercises] = useState([]);
 
   const [muscleToSearch, setMuscleToSearch] = useState("");
   const [categoryToSearch, setCategoryToSearch] = useState("");
-
-  console.log("musculo a buscar:", muscleToSearch);
-  console.log("categoria a buscar:", categoryToSearch);
-  console.log("exercises a buscar:", exercises.length);
 
   const getExercises = async () => {
     if (muscleToSearch !== "" && categoryToSearch !== "") {
@@ -46,7 +47,8 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
       };
       try {
         const response = await axios.request(options);
-        setExercises(response.data.slice(0, 6));
+        setExercises(response.data);
+        setTotalExercises(response.data.length);
         setTimeout(() => {
           setIsLoading(false);
         }, 1000);
@@ -54,10 +56,6 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
         console.error(error);
       }
     }
-  };
-
-  const getNewExercises = () => {
-    console.log(muscleToSearch, categoryToSearch);
   };
 
   const getAttributes = async () => {
@@ -102,8 +100,10 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
         muscleToSearch,
         categoryToSearch,
         isLoading,
+        limit,
+        totalExercises,
         getExercises,
-        getNewExercises,
+        setLimit,
         setMuscleToSearch,
         setCategoryToSearch,
         setExercises,
