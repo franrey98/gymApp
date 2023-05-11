@@ -2,10 +2,11 @@ import { createContext, useEffect, useState } from "react";
 import { API_URL_BASE_MUSCLES, API_KEY } from "@env";
 import axios from "axios";
 import { Props } from "../types/props";
+import { Exercises } from "../types/exercises";
 interface ContextProps {
   muscles: string[];
   categories: string[];
-  exercises: string[];
+  exercises: Exercises[];
   categoryToSearch: string;
   muscleToSearch: string;
   isLoading: boolean;
@@ -15,7 +16,7 @@ interface ContextProps {
   getExercises: (muscle: any) => Promise<void>;
   setMuscleToSearch: React.Dispatch<React.SetStateAction<string>>;
   setCategoryToSearch: React.Dispatch<React.SetStateAction<string>>;
-  setExercises: React.Dispatch<React.SetStateAction<never[]>>;
+  setExercises: React.Dispatch<React.SetStateAction<Exercises[]>>;
 }
 
 export const MusclesContext = createContext<ContextProps | null>(null);
@@ -28,7 +29,7 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
 
   const [muscles, setMuscles] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [exercises, setExercises] = useState([]);
+  const [exercises, setExercises] = useState<Exercises[]>([]);
 
   const [muscleToSearch, setMuscleToSearch] = useState("");
   const [categoryToSearch, setCategoryToSearch] = useState("");
@@ -47,7 +48,12 @@ export const MusclesProvider: React.FC<Props> = ({ children }) => {
       };
       try {
         const response = await axios.request(options);
-        setExercises(response.data);
+
+        const updatedExercises = response?.data.map((exercise: Exercises) => ({
+          ...exercise,
+          isFavorite: false,
+        }));
+        setExercises(updatedExercises);
         setTotalExercises(response.data.length);
         setTimeout(() => {
           setIsLoading(false);

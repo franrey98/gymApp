@@ -7,12 +7,16 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { View, ActivityIndicator } from "react-native";
 import Introduction from "./src/components/Introduction/Introduction";
+import { FavoriteProvider } from "./src/context/FavoritesContext";
 
 const AppStateMuscles = ({ children }: any) => {
   return <MusclesProvider>{children}</MusclesProvider>;
 };
 const AppStateBMI = ({ children }: any) => {
   return <BMIProvider>{children}</BMIProvider>;
+};
+const AppStateFavorite = ({ children }: any) => {
+  return <FavoriteProvider>{children}</FavoriteProvider>;
 };
 
 const App = () => {
@@ -52,7 +56,9 @@ const App = () => {
   return (
     <AppStateMuscles>
       <AppStateBMI>
-        <Introduction />
+        <AppStateFavorite>
+          <Introduction />
+        </AppStateFavorite>
       </AppStateBMI>
     </AppStateMuscles>
   );

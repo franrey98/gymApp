@@ -7,6 +7,7 @@ export interface Exercises {
   exercise_name: string;
   id: number;
   steps: string[];
+  isFavorite: boolean;
   target: Target;
   videoURL: string[];
   youtubeURL: string;
