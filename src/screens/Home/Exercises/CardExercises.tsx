@@ -67,7 +67,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
 
           <Text style={styles.category}>Categoría: {exercises?.Category}</Text>
           <Text style={styles.muscle}>
-            Músculos: {exercises?.target.Primary.join(", ")}
+            Músculos: {exercises?.target?.Primary?.join(", ")}
           </Text>
           <Text style={{ color: "white" }}>
             Pasos a seguir:{" "}
@@ -90,7 +90,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
       </View>
       <View style={{ marginTop: -30 }}>
         {Array.isArray(exercises?.videoURL) &&
-          exercises?.videoURL.slice(0, 1).map((url) => (
+          exercises?.videoURL?.slice(0, 1).map((url) => (
             <View key={url}>
               <Video
                 ref={video}

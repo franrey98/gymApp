@@ -1,16 +1,15 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
 import { useFav } from "../../hooks/useFav";
+import ContainerFavExercises from "./ContainerFavExercises/ContainerFavExercises";
 
 const Favorites = () => {
   const { dataStorage, setDataStorage } = useFav();
-
   return (
     <View>
       {dataStorage.length >= 1 ? (
-        <Text>{dataStorage?.map((items: any) => items.exercise_name)}</Text>
+        <ContainerFavExercises favExercises={dataStorage} />
       ) : (
         <Text>No hay nada en storage</Text>
       )}
