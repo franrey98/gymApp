@@ -10,6 +10,7 @@ import { useMuscles } from "../../../hooks/useMuscles";
 import { colors } from "../../../constants/colors";
 import LinearGradientApp from "../../../components/LinearGradientApp";
 import { useEffect } from "react";
+import { color } from "react-native-reanimated";
 
 const HomeExercises = ({ navigation }: any) => {
   const {
@@ -43,7 +44,7 @@ const HomeExercises = ({ navigation }: any) => {
             marginHorizontal: 20,
             backgroundColor: "white",
             height: "50%",
-            borderRadius: 5,
+            borderRadius: 10,
             justifyContent: "center",
           }}
         >
@@ -52,16 +53,18 @@ const HomeExercises = ({ navigation }: any) => {
               textAlign: "center",
               fontWeight: "500",
               marginHorizontal: 5,
+              color: colors.primaryLight,
             }}
           >
-            En esta sección vas a encontrar todo tipo de ejercicios
+            En esta sección vas a encontrar ejercicios para todo los grupos
+            musculares!
           </Text>
         </View>
       </LinearGradientApp>
       <View style={{ backgroundColor: "white", flex: 1 }}>
         <View
           style={{
-            marginHorizontal: 20,
+            marginHorizontal: 30,
           }}
         >
           {isLoading ? (

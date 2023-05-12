@@ -42,7 +42,7 @@ const Exercises = () => {
                 </Text>
               </TouchableOpacity>
             ) : (
-              <Text style={{ textAlign: "center", marginVertical: 10 }}>
+              <Text style={{ textAlign: "center", marginVertical: 15 }}>
                 No hay mas ejercicios para mostrar!
               </Text>
             )}

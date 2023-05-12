@@ -10,6 +10,7 @@ type Props = {
 const windowHeight = Dimensions.get("window").height;
 
 const HomeCard: React.FC<Props> = ({ data, navigation }) => {
+  console.log(data.length);
   return (
     <FlatList
       data={data}
@@ -19,9 +20,9 @@ const HomeCard: React.FC<Props> = ({ data, navigation }) => {
       keyExtractor={(item, index) => index.toString()}
       numColumns={1}
       contentContainerStyle={{
-        paddingHorizontal: 2,
+        paddingHorizontal: 10,
         flexGrow: 1,
-        paddingBottom: 80,
+        paddingBottom: data.length > 12 ? 0 : 100,
       }}
     />
   );

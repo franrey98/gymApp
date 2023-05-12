@@ -37,16 +37,24 @@ const RenderCards = ({ data, navigation }: PropsRenderCard) => {
       onPress={handleSubmit}
       style={{
         borderWidth: 1,
-        borderColor: colors.primaryLight,
+        borderColor: colors.tertiary,
         padding: 10,
         marginVertical: 15,
         flex: 1,
-        borderRadius: 0,
-        backgroundColor: colors.primary,
+        borderRadius: 5,
+        backgroundColor: colors.primaryLight,
       }}
     >
       {data && (
-        <Text style={{ textAlign: "center", color: "white", fontSize: 16 }}>
+        <Text
+          style={{
+            textAlign: "center",
+            color: "white",
+            fontSize: 16,
+            fontWeight: "500",
+            letterSpacing: 0.5,
+          }}
+        >
           {data.toUpperCase()}
         </Text>
       )}
