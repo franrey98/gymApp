@@ -8,4 +8,16 @@ export const styles = StyleSheet.create({
   textIntroduction: {
     marginVertical: 20,
   },
+  scrollContainer: {
+    flex: 1,
+    backgroundColor: "white",
+  },
+  containerResult: {
+    alignItems: "center",
+    marginTop: 20,
+  },
+  containerIndicator: {
+    alignItems: "center",
+    marginVertical: 20,
+  },
 });

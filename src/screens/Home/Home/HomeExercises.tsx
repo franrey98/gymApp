@@ -11,6 +11,7 @@ import { colors } from "../../../constants/colors";
 import LinearGradientApp from "../../../components/LinearGradientApp";
 import { useEffect } from "react";
 import { color } from "react-native-reanimated";
+import { styles } from "./HomeExercises.styled";
 
 const HomeExercises = ({ navigation }: any) => {
   const {
@@ -39,42 +40,17 @@ const HomeExercises = ({ navigation }: any) => {
     <>
       <StatusBar barStyle="light-content" backgroundColor={colors.secondary} />
       <LinearGradientApp>
-        <View
-          style={{
-            marginHorizontal: 20,
-            backgroundColor: "white",
-            height: "50%",
-            borderRadius: 10,
-            justifyContent: "center",
-          }}
-        >
-          <Text
-            style={{
-              textAlign: "center",
-              fontWeight: "500",
-              marginHorizontal: 5,
-              color: colors.primaryLight,
-            }}
-          >
+        <View style={styles.containerIntro}>
+          <Text style={styles.textIntro}>
             En esta sección vas a encontrar ejercicios para todo los grupos
             musculares!
           </Text>
         </View>
       </LinearGradientApp>
-      <View style={{ backgroundColor: "white", flex: 1 }}>
-        <View
-          style={{
-            marginHorizontal: 30,
-          }}
-        >
+      <View style={styles.containerList}>
+        <View style={styles.marginList}>
           {isLoading ? (
-            <View
-              style={{
-                marginTop: 50,
-              }}
-            >
-              <ActivityIndicator size={30} />
-            </View>
+            <ActivityIndicator style={styles.marginLoading} size={30} />
           ) : (
             <HomeCard data={muscles} navigation={navigation} />
           )}

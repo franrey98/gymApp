@@ -1,16 +1,13 @@
 import React, { useRef } from "react";
 import { Dimensions, FlatList } from "react-native";
-import RenderCards from "../screens/Home/CardsMuscles/RenderCards";
+import RenderCards from "../screens/Home/CardsMuscles/CardsMuscles";
 
 type Props = {
   data: string[];
   navigation?: any;
 };
 
-const windowHeight = Dimensions.get("window").height;
-
 const HomeCard: React.FC<Props> = ({ data, navigation }) => {
-  console.log(data.length);
   return (
     <FlatList
       data={data}

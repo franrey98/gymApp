@@ -9,6 +9,7 @@ import HomeCard from "../../../components/HomeCard";
 import LinearGradient from "react-native-linear-gradient";
 import LinearGradientApp from "../../../components/LinearGradientApp";
 import { colors } from "../../../constants/colors";
+import { styles } from "./CategorieScreen.styled";
 
 type RootStackParamList = {
   Homepage: undefined;
@@ -57,35 +58,20 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
   return (
     <>
       {exercises.length > 0 ? (
-        <View style={{ marginHorizontal: 20 }}>
+        <View style={styles.marginH}>
           <Exercises />
         </View>
       ) : (
         <>
           <LinearGradientApp>
-            <View
-              style={{
-                marginHorizontal: 20,
-                backgroundColor: "white",
-                height: "50%",
-                borderRadius: 10,
-                justifyContent: "center",
-              }}
-            >
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontWeight: "500",
-                  marginHorizontal: 5,
-                  color: colors.primaryLight,
-                }}
-              >
+            <View style={styles.containerIntro}>
+              <Text style={styles.textIntro}>
                 Seleccionaste {muscleToSearch}, ahora selecciona la categoria
                 para personalizar tu entrenamiento.
               </Text>
             </View>
           </LinearGradientApp>
-          <View style={{ marginHorizontal: 20 }}>
+          <View style={styles.marginH}>
             <HomeCard data={categories} />
           </View>
         </>

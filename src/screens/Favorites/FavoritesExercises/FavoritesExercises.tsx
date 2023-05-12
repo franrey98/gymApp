@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Button } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFav } from "../../hooks/useFav";
-import ContainerFavExercises from "./ContainerFavExercises/ContainerFavExercises";
+import { useFav } from "../../../hooks/useFav";
+import ContainerFavExercises from "../ContainerFavExercises/ContainerFavExercises";
 
 const Favorites = () => {
   const { dataStorage, setDataStorage } = useFav();

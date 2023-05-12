@@ -3,7 +3,7 @@ import { Formik } from "formik";
 import { TextInput, View, TouchableOpacity, Text } from "react-native";
 import { useBMI } from "../../../hooks/useBMI";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { styles } from "./FormBMI.style";
+import { styles } from "./FormBMI.styled";
 
 interface ValuesBMI {
   weight: string;
@@ -45,9 +45,7 @@ const FormBMI = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={{ textAlign: "center", marginTop: 20 }}>
-        Calcula tu Indice de Masa Corporal
-      </Text>
+      <Text style={styles.textForm}>Calcula tu Indice de Masa Corporal</Text>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -61,7 +59,7 @@ const FormBMI = () => {
           errors,
           touched,
         }) => (
-          <View style={{ marginTop: 5 }}>
+          <>
             <View style={styles.inputContainer}>
               <Icon
                 name="human-male-height-variant"
@@ -113,7 +111,7 @@ const FormBMI = () => {
             >
               <Text style={styles.buttonText}>Enviar</Text>
             </TouchableOpacity>
-          </View>
+          </>
         )}
       </Formik>
     </View>

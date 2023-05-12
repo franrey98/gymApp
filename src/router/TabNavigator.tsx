@@ -3,7 +3,7 @@ import CalculatorBMI from "../screens/CalculatorBMI/CalculatorBMI/CalculatorBMI"
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { colors } from "../constants/colors";
 import StackHome from "./StackHome";
-import Favorites from "../screens/Favorites/Favorites";
+import TopTabs from "./TopTabs";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -15,7 +15,7 @@ const TabNavigator = () => {
           let iconName: any;
           if (route.name === "Homepage") {
             iconName = focused ? "dumbbell" : "dumbbell";
-          } else if (route.name === "Favorites") {
+          } else if (route.name === "TopTabs") {
             iconName = focused ? "star" : "star";
           } else if (route.name === "IMC") {
             iconName = focused ? "weight" : "weight";
@@ -43,7 +43,7 @@ const TabNavigator = () => {
       />
       <BottomTab.Screen
         options={{
-          headerTitle: "Favoritos",
+          headerTitle: "Mis Favoritos",
           tabBarLabel: "Favoritos",
           headerTitleAlign: "left",
           headerTitleStyle: {
@@ -54,8 +54,8 @@ const TabNavigator = () => {
             backgroundColor: colors.secondary,
           },
         }}
-        name="Favorites"
-        component={Favorites}
+        name="TopTabs"
+        component={TopTabs}
       />
       <BottomTab.Screen
         options={{

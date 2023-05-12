@@ -12,6 +12,10 @@ export const styles = StyleSheet.create({
     backgroundColor: "#d8edf0",
     marginTop: 40,
   },
+  textForm: {
+    textAlign: "center",
+    marginVertical: 10,
+  },
   input: {
     width: "100%",
     height: 45,

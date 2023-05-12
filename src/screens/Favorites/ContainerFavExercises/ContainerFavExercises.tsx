@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Exercises } from "../../../types/exercises";
-import CardExercises from "../../Home/Exercises/CardExercises";
+import CardExercises from "../../Home/CardExercises/CardExercises";
 
 interface Props {
   favExercises: Exercises[];

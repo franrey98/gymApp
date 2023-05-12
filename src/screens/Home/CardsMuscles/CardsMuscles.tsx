@@ -9,13 +9,14 @@ import {
 } from "react-native";
 import { colors } from "../../../constants/colors";
 import { useMuscles } from "../../../hooks/useMuscles";
+import { styles } from "./CardsMuscles.styled";
 
 interface PropsRenderCard {
   data: string;
   navigation?: any;
 }
 
-const RenderCards = ({ data, navigation }: PropsRenderCard) => {
+const CardsMuscles = ({ data, navigation }: PropsRenderCard) => {
   const route = useRoute();
   const { setCategoryToSearch, setMuscleToSearch, getExercises } = useMuscles();
 
@@ -35,31 +36,11 @@ const RenderCards = ({ data, navigation }: PropsRenderCard) => {
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={handleSubmit}
-      style={{
-        borderWidth: 1,
-        borderColor: colors.tertiary,
-        padding: 10,
-        marginVertical: 15,
-        flex: 1,
-        borderRadius: 5,
-        backgroundColor: colors.primaryLight,
-      }}
+      style={styles.button}
     >
-      {data && (
-        <Text
-          style={{
-            textAlign: "center",
-            color: "white",
-            fontSize: 16,
-            fontWeight: "500",
-            letterSpacing: 0.5,
-          }}
-        >
-          {data.toUpperCase()}
-        </Text>
-      )}
+      {data && <Text style={styles.textButton}>{data.toUpperCase()}</Text>}
     </TouchableOpacity>
   );
 };
 
-export default RenderCards;
+export default CardsMuscles;

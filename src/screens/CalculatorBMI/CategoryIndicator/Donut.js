@@ -28,7 +28,6 @@ const Donut = ({
       useNativeDriver: true,
       easing: Easing.out(Easing.ease),
     }).start(() => {
-      // Se establece el valor final de la animación en percentage
       animated.setValue(percentage);
     });
   };
@@ -49,8 +48,6 @@ const Donut = ({
         });
       }
     });
-
-    // Incluimos percentage en la lista de dependencias
   }, [max, percentage]);
 
   return (

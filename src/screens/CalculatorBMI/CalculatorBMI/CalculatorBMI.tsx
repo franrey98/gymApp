@@ -13,7 +13,6 @@ const CalculatorBMI = () => {
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
-      <Toast position="bottom" />
       <View style={styles.container}>
         <Text style={styles.textIntroduction}>
           El Índice de Masa Corporal es una medida que se utiliza para evaluar
@@ -23,13 +22,8 @@ const CalculatorBMI = () => {
         </Text>
 
         <FormBMI />
-        <ScrollView
-          style={{
-            flex: 1,
-            backgroundColor: "white",
-          }}
-        >
-          <View style={{ alignItems: "center", marginTop: 20 }}>
+        <ScrollView style={styles.scrollContainer}>
+          <View style={styles.containerResult}>
             {resultBMI ? (
               <Text>Tu Indice de Masa Corporal es de: {resultBMI}</Text>
             ) : (
@@ -39,7 +33,7 @@ const CalculatorBMI = () => {
               <ActivityIndicator size={30} />
             ) : (
               categoryBMI && (
-                <View style={{ alignItems: "center", marginVertical: 20 }}>
+                <View style={styles.containerIndicator}>
                   <BMICategoryIndicator categoryBMI={categoryBMI} />
                   <TipsCategory categoryBMI={categoryBMI} />
                 </View>
@@ -48,6 +42,7 @@ const CalculatorBMI = () => {
           </View>
         </ScrollView>
       </View>
+      <Toast position="top" />
     </KeyboardAwareScrollView>
   );
 };
