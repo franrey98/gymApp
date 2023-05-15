@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.primary,
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 15,
     marginTop: 10,
     elevation: 2,
@@ -65,8 +65,8 @@ export const styles = StyleSheet.create({
   buttonVideo: {
     backgroundColor: colors.primary,
     padding: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     marginTop: -10,
   },
   textButtonVideo: {

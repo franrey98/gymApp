@@ -8,16 +8,17 @@ import {
 import { useMuscles } from "../../../hooks/useMuscles";
 import CardExercises from "../CardExercises/CardExercises";
 import { styles } from "./Exercises.styled";
+import { View } from "react-native";
 const Exercises = () => {
   const { exercises, isLoading, setLimit, limit, totalExercises } =
     useMuscles();
 
   return (
-    <>
+    <View style={{ backgroundColor: "white" }}>
       {isLoading ? (
         <ActivityIndicator size={30} />
       ) : (
-        <ScrollView>
+        <ScrollView style={{ backgroundColor: "white" }}>
           {exercises &&
             exercises.slice(0, limit).map((items) => {
               if (typeof items === "object") {
@@ -41,7 +42,7 @@ const Exercises = () => {
           )}
         </ScrollView>
       )}
-    </>
+    </View>
   );
 };
 

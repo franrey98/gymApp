@@ -7,9 +7,16 @@ import { styles } from "./CalculatorBMI.styled";
 import TipsCategory from "../TipsCategory/TipsCategory";
 import Toast from "react-native-toast-message";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { TouchableOpacity } from "react-native";
+import { useFav } from "../../../hooks/useFav";
 
 const CalculatorBMI = () => {
   const { resultBMI, categoryBMI, isLoading } = useBMI();
+  const { addFavBMI } = useFav();
+
+  const handleSubmit = () => {
+    addFavBMI(resultBMI, categoryBMI);
+  };
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
@@ -36,6 +43,16 @@ const CalculatorBMI = () => {
                 <View style={styles.containerIndicator}>
                   <BMICategoryIndicator categoryBMI={categoryBMI} />
                   <TipsCategory categoryBMI={categoryBMI} />
+                  <TouchableOpacity
+                    style={{
+                      backgroundColor: "green",
+                      padding: 5,
+                      borderRadius: 5,
+                    }}
+                    onPress={handleSubmit}
+                  >
+                    <Text style={{ color: "white" }}>Guardar IMC</Text>
+                  </TouchableOpacity>
                 </View>
               )
             )}

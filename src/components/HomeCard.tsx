@@ -19,7 +19,8 @@ const HomeCard: React.FC<Props> = ({ data, navigation }) => {
       contentContainerStyle={{
         paddingHorizontal: 10,
         flexGrow: 1,
-        paddingBottom: data.length > 12 ? 0 : 100,
+        paddingBottom: data.length > 13 ? 0 : 200,
+        backgroundColor: "white",
       }}
     />
   );

@@ -7,8 +7,11 @@ import { useMuscles } from "../hooks/useMuscles";
 
 interface FavoriteContextState {
   dataStorage: Exercises[];
-  addFavExercise: (id: number) => Promise<void>;
+  dataBMI: { key: string; value: string; date: string }[];
+  removeFavBMI: (id: string) => Promise<void>;
   removeFavExercise: (id: number) => Promise<void>;
+  addFavExercise: (id: number) => Promise<void>;
+  addFavBMI: (bmi: string, categoryBMI: string) => Promise<void>;
   setDataStorage: React.Dispatch<React.SetStateAction<Exercises[]>>;
 }
 
@@ -16,14 +19,21 @@ export const FavoriteContext = createContext<FavoriteContextState | null>(null);
 
 export const FavoriteProvider: React.FC<Props> = ({ children }) => {
   const { exercises, setExercises } = useMuscles();
+  const [dataBMI, setDataBMI] = useState<
+    { key: string; value: string; date: string }[]
+  >([]);
   const [dataStorage, setDataStorage] = useState<Exercises[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       try {
         const value = await AsyncStorage.getItem("@fav_exercise");
+        const valueBMI = await AsyncStorage.getItem("@fav_bmi");
         if (value !== null) {
           setDataStorage(JSON.parse(value));
+        }
+        if (valueBMI !== null) {
+          setDataBMI(JSON.parse(valueBMI));
         }
       } catch (error) {
         console.log(error);
@@ -99,9 +109,77 @@ export const FavoriteProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
+  const addFavBMI = async (bmi: string, categoryBMI: string) => {
+    try {
+      const storedData = await AsyncStorage.getItem("@fav_bmi");
+      let valuesBMI: { key: string; value: string; date: string }[] = [];
+
+      if (storedData !== null) {
+        valuesBMI = JSON.parse(storedData);
+      }
+
+      const now = new Date();
+      const yearOptions = "numeric";
+      const monthOptions = "numeric";
+      const dayOptions = "numeric";
+      const hour12Options = false;
+
+      const dateFormatted = now.toLocaleString("es-AR", {
+        year: yearOptions,
+        month: monthOptions,
+        day: dayOptions,
+        hour12: hour12Options,
+      });
+
+      const newEntry = {
+        date: dateFormatted,
+        key: Date.now().toString(),
+        value: bmi,
+        categoryBMI,
+      };
+
+      valuesBMI.push(newEntry);
+      await AsyncStorage.setItem("@fav_bmi", JSON.stringify(valuesBMI));
+      setDataBMI(valuesBMI);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeFavBMI = async (id: string) => {
+    try {
+      // Eliminar el elemento del AsyncStorage
+      const storedData = await AsyncStorage.getItem("@fav_bmi");
+      let valuesBMI: { key: string; value: string; date: string }[] = [];
+
+      if (storedData !== null) {
+        valuesBMI = JSON.parse(storedData);
+      }
+
+      // Filtrar los elementos y eliminar el que coincide con la key
+      const updatedValuesBMI = valuesBMI.filter((item) => item.key !== id);
+
+      // Guardar los nuevos valores en el AsyncStorage
+      await AsyncStorage.setItem("@fav_bmi", JSON.stringify(updatedValuesBMI));
+
+      // Actualizar el estado de favoritos
+      setDataBMI(updatedValuesBMI);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <FavoriteContext.Provider
-      value={{ addFavExercise, dataStorage, setDataStorage, removeFavExercise }}
+      value={{
+        dataStorage,
+        dataBMI,
+        addFavExercise,
+        addFavBMI,
+        removeFavBMI,
+        removeFavExercise,
+        setDataStorage,
+      }}
     >
       {children}
     </FavoriteContext.Provider>

@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../../constants/colors";
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#5e1e66",
+    backgroundColor: colors.secondary,
     padding: 5,
     marginVertical: 10,
     borderRadius: 5,
@@ -10,6 +11,8 @@ export const styles = StyleSheet.create({
   textButton: {
     textAlign: "center",
     color: "white",
+    fontSize: 18,
+    fontWeight: "500",
   },
   textNoMoreExercises: {
     textAlign: "center",

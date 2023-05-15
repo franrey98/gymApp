@@ -1,23 +1,22 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
 import { Exercises } from "../../../types/exercises";
 import CardExercises from "../../Home/CardExercises/CardExercises";
+import CardIMC from "../CardIMC/CardIMC";
 
 interface Props {
-  favExercises: Exercises[];
+  favExercises?: Exercises[];
+  favIMC?: { key: string; value: string; date: string; categoryBMI: string }[];
 }
 
-const ContainerFavExercises = ({ favExercises }: Props) => {
+const ContainerFavExercises = ({ favExercises, favIMC }: Props) => {
   return (
     <>
-      <Text style={{ textAlign: "center", marginVertical: 10 }}>
-        Estos son tus ejercicios favoritos
-      </Text>
-      <ScrollView style={{ marginHorizontal: 20, marginBottom: 40 }}>
-        {favExercises.map((items: Exercises) => (
+      {favExercises &&
+        favExercises.map((items: Exercises) => (
           <CardExercises key={items.id} exercises={items} />
         ))}
-      </ScrollView>
+      {favIMC &&
+        favIMC.map((items) => <CardIMC key={items.key} data={items} />)}
     </>
   );
 };

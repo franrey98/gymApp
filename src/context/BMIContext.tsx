@@ -3,7 +3,6 @@ import { API_URL_BASE_BMI, API_KEY } from "@env";
 import axios from "axios";
 import { Props } from "../types/props";
 import { toastAlert } from "../utils/alerts";
-
 interface BMIContextState {
   calculateBMI: (weight: number, height: number) => Promise<void>;
   resultBMI: number;
@@ -51,6 +50,7 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
       }
       setIsLoading(false);
     } catch (error: any) {
+      console.log(error);
       if (error.response.status === 429) {
         toastAlert("error", "Se superaron la cantidad de peticiones");
         setIsLoading(false);

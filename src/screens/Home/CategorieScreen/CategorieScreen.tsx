@@ -56,7 +56,7 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
   }, [navigation]);
 
   return (
-    <>
+    <View style={{ backgroundColor: "white" }}>
       {exercises.length > 0 ? (
         <View style={styles.marginH}>
           <Exercises />
@@ -76,7 +76,7 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
           </View>
         </>
       )}
-    </>
+    </View>
   );
 };
 
