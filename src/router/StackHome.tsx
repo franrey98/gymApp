@@ -11,7 +11,7 @@ const StackHome = () => {
     <Stack.Navigator initialRouteName="Home">
       <Stack.Screen
         options={{
-          headerTitle: "Ejercicios".toUpperCase(),
+          headerTitle: "Exercises".toUpperCase(),
           headerTitleAlign: "left",
           headerShown: true,
           headerTitleStyle: {
@@ -37,8 +37,8 @@ const StackHome = () => {
             backgroundColor: colors.secondary,
           },
           headerTintColor: "white",
-          headerTitle: Platform.OS === "android" ? "Volver" : "",
-          headerBackTitle: "Volver",
+          headerTitle: Platform.OS === "android" ? "Go Back" : "",
+          headerBackTitle: "Go Back",
         }}
         component={CategorieScreen}
       />

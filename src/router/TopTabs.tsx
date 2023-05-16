@@ -18,13 +18,13 @@ const TopTabs = () => {
     >
       <Tab.Screen
         options={{
-          title: "Ejercicios favoritos",
+          title: "Favorites Exercises",
         }}
         name="FavoritesExercises"
         component={FavoritesExercises}
       />
       <Tab.Screen
-        options={{ title: "IMC guardado" }}
+        options={{ title: "Saved BMI" }}
         name="FavoritesIMC"
         component={FavoritesIMC}
       />

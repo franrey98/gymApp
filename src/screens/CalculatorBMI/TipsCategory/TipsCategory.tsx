@@ -7,22 +7,22 @@ const TipsCategory = ({ categoryBMI = "" }: BMICategoryIndicatorProps) => {
     if (categoryBMI === "Underweight") {
       return {
         textInfo:
-          "Las personas con bajo peso tienen un IMC inferior a 18.5. Esto puede deberse a factores como la desnutrición, la genética, problemas de salud o trastornos alimentarios. El consejo para las personas con bajo peso es que consulten con un médico o un nutricionista para determinar la causa y recibir tratamiento adecuado.",
+          "People with a BMI below 18.5 are considered to have low weight. This can be due to factors such as malnutrition, genetics, health issues, or eating disorders. The advice for people with low weight is to consult with a doctor or nutritionist to determine the cause and receive appropriate treatment.",
       };
     } else if (categoryBMI === "Normal weight") {
       return {
         textInfo:
-          "Las personas con un IMC en el rango de 18.5 a 24.9 se consideran que tienen un peso normal. Esto indica que la persona tiene un peso adecuado para su altura y edad. El consejo para las personas con peso normal es que mantengan un estilo de vida saludable y equilibrado, y que sigan una dieta saludable y hagan ejercicio regularmente.",
+          "People with a BMI in the range of 18.5 to 24.9 are considered to have a healthy weight. This indicates that the person has an appropriate weight for their height and age. The advice for people with a normal weight is to maintain a healthy and balanced lifestyle, follow a healthy diet, and engage in regular exercise.",
       };
     } else if (categoryBMI === "Overweight") {
       return {
         textInfo:
-          " Las personas con un IMC en el rango de 25 a 29.9 se consideran que tienen sobrepeso. El sobrepeso puede aumentar el riesgo de enfermedades como la diabetes, la hipertensión y enfermedades cardiovasculares. El consejo para las personas con sobrepeso es que traten de perder peso a través de una dieta saludable y ejercicio regular, y que eviten el consumo de alimentos procesados y ricos en grasas.",
+          "People with a BMI in the range of 25 to 29.9 are considered to be overweight. Overweight can increase the risk of diseases such as diabetes, hypertension, and cardiovascular diseases. The advice for people with overweight is to try to lose weight through a healthy diet, regular exercise, and avoiding the consumption of processed foods and foods high in fat.",
       };
     } else {
       return {
         textInfo:
-          "Las personas con un IMC de 30 o más se consideran obesas. La obesidad aumenta el riesgo de enfermedades crónicas como la diabetes, la hipertensión, enfermedades cardiovasculares, entre otras. El consejo para las personas con obesidad es que consulten a un médico o un nutricionista para determinar la causa y recibir tratamiento adecuado, que sigan una dieta saludable y hagan ejercicio regularmente, y que eviten el consumo de alimentos procesados y ricos en grasas.",
+          "People with a BMI of 30 or above are considered to be obese. Obesity increases the risk of chronic diseases such as diabetes, hypertension, cardiovascular diseases, among others. The advice for people with obesity is to consult with a doctor or nutritionist to determine the cause and receive appropriate treatment, follow a healthy diet, engage in regular exercise, and avoid the consumption of processed foods and foods high in fat.",
       };
     }
   };

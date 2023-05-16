@@ -16,6 +16,8 @@ export const styles = StyleSheet.create({
   },
   textNoMoreExercises: {
     textAlign: "center",
-    marginVertical: 15,
+    marginVertical: 20,
+    paddingBottom: 5,
+    fontSize: 18,
   },
 });

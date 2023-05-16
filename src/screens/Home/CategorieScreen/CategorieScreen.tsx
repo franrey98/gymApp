@@ -66,8 +66,13 @@ const CategorieScreen: React.FC<Props> = ({ route, navigation }) => {
           <LinearGradientApp>
             <View style={styles.containerIntro}>
               <Text style={styles.textIntro}>
-                Seleccionaste {muscleToSearch}, ahora selecciona la categoria
-                para personalizar tu entrenamiento.
+                You have selected{" "}
+                <Text
+                  style={{ color: "#5eb68e", fontWeight: "600", fontSize: 16 }}
+                >
+                  {muscleToSearch.toUpperCase()}
+                </Text>
+                , now select the category to customize your workout.
               </Text>
             </View>
           </LinearGradientApp>

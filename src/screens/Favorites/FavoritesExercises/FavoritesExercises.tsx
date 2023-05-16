@@ -13,7 +13,7 @@ const FavoritesExercises = ({ navigation }: any) => {
       {dataStorage.length >= 1 ? (
         <ScrollView style={{ marginHorizontal: 20 }}>
           <LinkToHomeOrBMI
-            text={"Ir a los ejercicios"}
+            text={"Go to exercises"}
             navigation={navigation}
             link={"Home"}
           />
@@ -38,7 +38,7 @@ const FavoritesExercises = ({ navigation }: any) => {
                 fontSize: 16,
               }}
             >
-              Borrar ejercicios favoritos
+              Delete favorite exercises
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -56,11 +56,11 @@ const FavoritesExercises = ({ navigation }: any) => {
                 marginTop: 20,
               }}
             >
-              No tenes ningun ejercico guardado!
+              You don't have any saved exercises!
             </Text>
           </View>
           <LinkToHomeOrBMI
-            text={"Ir a los ejercicios"}
+            text={"Go to exercises"}
             navigation={navigation}
             link={"Home"}
           />

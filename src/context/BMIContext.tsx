@@ -36,7 +36,7 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
       const response = await axios.request(options);
       const fixedNumber = response.data.bmi.toFixed(2);
       if (response.status === 200) {
-        toastAlert("success", "Tu peticion se realizo correctamente!");
+        toastAlert("success", "Your request was successful!");
       }
       setResultBMI(fixedNumber);
       if (fixedNumber < 18.5) {
@@ -52,7 +52,7 @@ export const BMIProvider: React.FC<Props> = ({ children }) => {
     } catch (error: any) {
       console.log(error);
       if (error.response.status === 429) {
-        toastAlert("error", "Se superaron la cantidad de peticiones");
+        toastAlert("error", "The number of requests has been exceeded");
         setIsLoading(false);
       }
     }

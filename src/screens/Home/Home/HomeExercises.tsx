@@ -42,8 +42,7 @@ const HomeExercises = ({ navigation }: any) => {
       <LinearGradientApp>
         <View style={styles.containerIntro}>
           <Text style={styles.textIntro}>
-            En esta sección vas a encontrar ejercicios para todo los grupos
-            musculares!
+            In this section, you will find exercises for all muscle groups!
           </Text>
         </View>
       </LinearGradientApp>

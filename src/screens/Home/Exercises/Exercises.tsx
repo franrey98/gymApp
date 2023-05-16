@@ -9,6 +9,7 @@ import { useMuscles } from "../../../hooks/useMuscles";
 import CardExercises from "../CardExercises/CardExercises";
 import { styles } from "./Exercises.styled";
 import { View } from "react-native";
+import Icon from "react-native-vector-icons/Entypo";
 const Exercises = () => {
   const { exercises, isLoading, setLimit, limit, totalExercises } =
     useMuscles();
@@ -33,11 +34,12 @@ const Exercises = () => {
               style={styles.button}
               onPress={() => setLimit(limit + 6)}
             >
-              <Text style={styles.textButton}>Ver mas</Text>
+              <Text style={styles.textButton}>View More</Text>
             </TouchableOpacity>
           ) : (
             <Text style={styles.textNoMoreExercises}>
-              No hay mas ejercicios para mostrar!
+              There are no more exercises to show{"  "}
+              <Icon name="emoji-sad" size={18} />
             </Text>
           )}
         </ScrollView>

@@ -41,9 +41,9 @@ const Introduction = () => {
     return (
       <View style={styles.container}>
         <View style={styles.modal}>
-          <Text style={styles.textWelcome}>Bienvenido a GymApp</Text>
+          <Text style={styles.textWelcome}>Welcome to GymApp</Text>
           <Text style={styles.textDescription}>
-            Los mejores ejercicios los encontras en esta aplicacion!
+            Find the best exercises in this application!
           </Text>
           <AnimatedLottieView
             source={{
@@ -66,7 +66,7 @@ const Introduction = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Text style={styles.textButton}>Ir a la aplicacion</Text>
+              <Text style={styles.textButton}>Go to the app</Text>
               <Icon size={17} color={"white"} name="doubleright" />
             </View>
           </TouchableOpacity>

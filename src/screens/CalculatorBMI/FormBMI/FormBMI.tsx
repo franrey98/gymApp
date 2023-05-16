@@ -27,17 +27,17 @@ const FormBMI = () => {
   const validateForm = (values: ValuesBMI) => {
     const errors: Partial<ValuesBMI> = {};
     if (!values.weight) {
-      errors.weight = "El peso es requerido.";
+      errors.weight = "Weight is required.";
     }
 
     if (values.weight && parseFloat(values.weight) > 300) {
-      errors.weight = "El peso máximo es 300 kg";
+      errors.weight = "Maximum weight is 300 kg.";
     }
     if (!values.height) {
-      errors.height = "La altura es requerida.";
+      errors.height = "Height is required";
     } else if (!/^\d{1,2}((\.|,)\d{1,2})?$/.test(values.height)) {
       errors.height =
-        "La altura no es válida, despues del primer numero tiene que haber un punto o una coma.";
+        "Invalid height, it should have a decimal point or comma after the first number";
     }
 
     return errors;
@@ -45,7 +45,7 @@ const FormBMI = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textForm}>Calcula tu Indice de Masa Corporal</Text>
+      <Text style={styles.textForm}> Calculate your Body Mass Index</Text>
       <Formik
         initialValues={initialValues}
         onSubmit={handleSubmit}
@@ -76,7 +76,7 @@ const FormBMI = () => {
                 value={values.height}
                 keyboardType="numeric"
                 maxLength={4}
-                placeholder="Altura (mts)"
+                placeholder="Height (m)"
               />
             </View>
 
@@ -99,7 +99,7 @@ const FormBMI = () => {
                 value={values.weight}
                 keyboardType="numeric"
                 maxLength={3}
-                placeholder="Peso (kg)"
+                placeholder="Weight (kg)"
               />
             </View>
             {touched.weight && errors.weight && (
@@ -109,7 +109,7 @@ const FormBMI = () => {
               style={styles.button}
               onPress={handleSubmit as any}
             >
-              <Text style={styles.buttonText}>Enviar</Text>
+              <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>
           </>
         )}

@@ -50,30 +50,30 @@ const CardExercises = ({ exercises }: PropsExercises) => {
             </TouchableOpacity>
           </View>
           <Text style={styles.details}>
-            Detalles:{" "}
+            Details:{" "}
             {showAllDetails ? (
               exercises?.details
             ) : exercises?.details === undefined ||
               exercises?.details === "" ? (
-              <Text>No hay detalles disponibles</Text>
+              <Text>No details available</Text>
             ) : (
               `${exercises?.details?.slice(0, 400)}...`
             )}
             {exercises?.details?.length > 400 && !showAllDetails && (
               <TouchableOpacity onPress={() => setShowAllDetails(true)}>
-                <Text style={styles.detailsLink}>Ver más</Text>
+                <Text style={styles.detailsLink}>View More</Text>
               </TouchableOpacity>
             )}
           </Text>
 
-          <Text style={styles.category}>Categoría: {exercises?.Category}</Text>
+          <Text style={styles.category}>Category: {exercises?.Category}</Text>
           <Text style={styles.muscle}>
-            Músculos: {exercises?.target?.Primary?.join(", ")}
+            Muscles: {exercises?.target?.Primary?.join(", ")}
           </Text>
           <Text style={styles.steps}>
-            Pasos a seguir:{" "}
+            Steps to follow:{" "}
             {exercises?.steps?.join(",") === "" ? (
-              <Text>No hay informacion disponible</Text>
+              <Text>No information available</Text>
             ) : (
               <Text style={styles.stepsText}>{exercises?.steps}</Text>
             )}
@@ -116,9 +116,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
           }
         >
           <Text style={styles.textButtonVideo}>
-            {status.isPlaying
-              ? "Pausa".toUpperCase()
-              : "Reproducir".toUpperCase()}
+            {status.isPlaying ? "Pause".toUpperCase() : "Play".toUpperCase()}
           </Text>
         </TouchableOpacity>
       )}

@@ -7,7 +7,7 @@ import { useMuscles } from "../hooks/useMuscles";
 
 interface FavoriteContextState {
   dataStorage: Exercises[];
-  dataBMI: { key: string; value: string; date: string }[];
+  dataBMI: { key: string; value: string; date: string; categoryBMI: string }[];
   removeFavBMI: (id: string) => Promise<void>;
   removeFavExercise: (id: number) => Promise<void>;
   addFavExercise: (id: number) => Promise<void>;
@@ -20,7 +20,7 @@ export const FavoriteContext = createContext<FavoriteContextState | null>(null);
 export const FavoriteProvider: React.FC<Props> = ({ children }) => {
   const { exercises, setExercises } = useMuscles();
   const [dataBMI, setDataBMI] = useState<
-    { key: string; value: string; date: string }[]
+    { key: string; value: string; date: string; categoryBMI: string }[]
   >([]);
   const [dataStorage, setDataStorage] = useState<Exercises[]>([]);
 
@@ -112,7 +112,12 @@ export const FavoriteProvider: React.FC<Props> = ({ children }) => {
   const addFavBMI = async (bmi: string, categoryBMI: string) => {
     try {
       const storedData = await AsyncStorage.getItem("@fav_bmi");
-      let valuesBMI: { key: string; value: string; date: string }[] = [];
+      let valuesBMI: {
+        key: string;
+        value: string;
+        date: string;
+        categoryBMI: string;
+      }[] = [];
 
       if (storedData !== null) {
         valuesBMI = JSON.parse(storedData);
@@ -148,21 +153,22 @@ export const FavoriteProvider: React.FC<Props> = ({ children }) => {
 
   const removeFavBMI = async (id: string) => {
     try {
-      // Eliminar el elemento del AsyncStorage
       const storedData = await AsyncStorage.getItem("@fav_bmi");
-      let valuesBMI: { key: string; value: string; date: string }[] = [];
+      let valuesBMI: {
+        key: string;
+        value: string;
+        date: string;
+        categoryBMI: string;
+      }[] = [];
 
       if (storedData !== null) {
         valuesBMI = JSON.parse(storedData);
       }
 
-      // Filtrar los elementos y eliminar el que coincide con la key
       const updatedValuesBMI = valuesBMI.filter((item) => item.key !== id);
 
-      // Guardar los nuevos valores en el AsyncStorage
       await AsyncStorage.setItem("@fav_bmi", JSON.stringify(updatedValuesBMI));
 
-      // Actualizar el estado de favoritos
       setDataBMI(updatedValuesBMI);
     } catch (error) {
       console.log(error);

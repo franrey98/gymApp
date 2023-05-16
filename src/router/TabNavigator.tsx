@@ -17,7 +17,7 @@ const TabNavigator = () => {
             iconName = focused ? "dumbbell" : "dumbbell";
           } else if (route.name === "TopTabs") {
             iconName = focused ? "star" : "star";
-          } else if (route.name === "IMC") {
+          } else if (route.name === "BMI") {
             iconName = focused ? "weight" : "weight";
           }
 
@@ -37,14 +37,14 @@ const TabNavigator = () => {
         name="Homepage"
         options={{
           headerShown: false,
-          tabBarLabel: "Ejercicios",
+          tabBarLabel: "Exercises",
         }}
         component={StackHome}
       />
       <BottomTab.Screen
         options={{
-          headerTitle: "Mis Favoritos",
-          tabBarLabel: "Favoritos",
+          headerTitle: "My Favorites".toUpperCase(),
+          tabBarLabel: "Favorites",
           headerTitleAlign: "left",
           headerTitleStyle: {
             color: "white",
@@ -59,7 +59,9 @@ const TabNavigator = () => {
       />
       <BottomTab.Screen
         options={{
-          headerTitle: "Calculadora IMC",
+          headerTitle: "Calculator BMI".toUpperCase(),
+
+          tabBarLabel: "BMI",
           headerTitleAlign: "left",
           headerTitleStyle: {
             color: "white",
@@ -69,7 +71,7 @@ const TabNavigator = () => {
             backgroundColor: colors.secondary,
           },
         }}
-        name="IMC"
+        name="BMI"
         component={CalculatorBMI}
       />
     </BottomTab.Navigator>

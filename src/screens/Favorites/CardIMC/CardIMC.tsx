@@ -15,7 +15,6 @@ interface PropsCard {
 
 const CardIMC = ({ data }: PropsCard) => {
   const { removeFavBMI } = useFav();
-  console.log(data);
   const deleteFavBMI = () => {
     removeFavBMI(data.key);
   };
@@ -26,10 +25,10 @@ const CardIMC = ({ data }: PropsCard) => {
         <Icon color={"white"} name="close" size={24} />
       </TouchableOpacity>
       <Text style={styles.imc}>
-        <Icon name="date-range" size={24} /> Fecha: {data?.date}
+        <Icon name="date-range" size={24} /> Date: {data?.date}
       </Text>
       <Text style={styles.imc}>
-        <Ionicons name="body" size={24} /> Valor: {data?.value} -{" "}
+        <Ionicons name="body" size={24} /> Value: {data?.value} -{" "}
         {data?.categoryBMI}
       </Text>
     </View>

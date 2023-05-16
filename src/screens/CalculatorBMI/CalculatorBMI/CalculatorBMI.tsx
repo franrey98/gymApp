@@ -22,20 +22,16 @@ const CalculatorBMI = () => {
     <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
       <View style={styles.container}>
         <Text style={styles.textIntroduction}>
-          El Índice de Masa Corporal es una medida que se utiliza para evaluar
-          el estado nutricional de una persona. Es una fórmula matemática que
-          relaciona el peso y la altura de una persona, y se expresa en unidades
-          de kilogramos por metro cuadrado (kg/m²).
+          Body Mass Index (BMI) is a measurement used to assess a person's
+          nutritional status. It is a mathematical formula that relates a
+          person's weight and height, and it is expressed in units of kilograms
+          per square meter (kg/m²).
         </Text>
 
         <FormBMI />
         <ScrollView style={styles.scrollContainer}>
           <View style={styles.containerResult}>
-            {resultBMI ? (
-              <Text>Tu Indice de Masa Corporal es de: {resultBMI}</Text>
-            ) : (
-              ""
-            )}
+            {resultBMI ? <Text>Your Body Mass Index is: {resultBMI}</Text> : ""}
             {isLoading ? (
               <ActivityIndicator size={30} />
             ) : (
@@ -51,7 +47,7 @@ const CalculatorBMI = () => {
                     }}
                     onPress={handleSubmit}
                   >
-                    <Text style={{ color: "white" }}>Guardar IMC</Text>
+                    <Text style={{ color: "white" }}>Save BMI</Text>
                   </TouchableOpacity>
                 </View>
               )

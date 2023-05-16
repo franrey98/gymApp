@@ -6,13 +6,13 @@ const BMICategoryIndicator = ({
 }: BMICategoryIndicatorProps) => {
   const getBMIStatus = () => {
     if (categoryBMI === "Underweight") {
-      return { classification: "Bajo peso", color: "blue" };
+      return { classification: "Underweight", color: "blue" };
     } else if (categoryBMI === "Normal weight") {
-      return { classification: "Peso saludable", color: "green" };
+      return { classification: "Healthy weight", color: "green" };
     } else if (categoryBMI === "Overweight") {
-      return { classification: "Sobrepeso", color: "orange" };
+      return { classification: "Overweight", color: "orange" };
     } else {
-      return { classification: "Obesidad", color: "red" };
+      return { classification: "Obesity", color: "red" };
     }
   };
 
