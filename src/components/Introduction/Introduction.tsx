@@ -14,6 +14,17 @@ interface PropsIntroduction {
 const Introduction = () => {
   const [introShown, setIntroShown] = useState(false);
 
+  const clearData = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log("Datos de AsyncStorage borrados exitosamente");
+    } catch (error) {
+      console.log("Error al borrar los datos de AsyncStorage:", error);
+    }
+  };
+
+  // clearData();
+
   useEffect(() => {
     const checkIntroShown = async () => {
       try {

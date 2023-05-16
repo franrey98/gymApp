@@ -12,8 +12,6 @@ const TopTabs = () => {
         tabBarPressColor: "powderblue",
         tabBarStyle: { backgroundColor: colors.secondary },
         tabBarLabelStyle: { color: "white" },
-        tabBarActiveTintColor: "#e91e63",
-        tabBarInactiveTintColor: "#123123",
       }}
     >
       <Tab.Screen

@@ -4,6 +4,7 @@ import { Props } from "../types/props";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Exercises } from "../types/exercises";
 import { useMuscles } from "../hooks/useMuscles";
+import { toastAlert } from "../utils/alerts";
 
 interface FavoriteContextState {
   dataStorage: Exercises[];
@@ -85,6 +86,10 @@ export const FavoriteProvider: React.FC<Props> = ({ children }) => {
         JSON.stringify(newFavExercises)
       );
       setDataStorage(newFavExercises);
+      toastAlert(
+        "success",
+        "El ejercicio se guardo correctamente en favoritos"
+      );
     } catch (error) {
       console.error(error);
     }
@@ -104,6 +109,7 @@ export const FavoriteProvider: React.FC<Props> = ({ children }) => {
         );
         setDataStorage(filteredExercises);
       }
+      toastAlert("success", "El valor se borro correctamente de favoritos");
     } catch (error) {
       console.log(error);
     }
@@ -146,6 +152,7 @@ export const FavoriteProvider: React.FC<Props> = ({ children }) => {
       valuesBMI.push(newEntry);
       await AsyncStorage.setItem("@fav_bmi", JSON.stringify(valuesBMI));
       setDataBMI(valuesBMI);
+      toastAlert("success", "El valor se guardo correctamente en favoritos");
     } catch (error) {
       console.log(error);
     }
@@ -170,6 +177,7 @@ export const FavoriteProvider: React.FC<Props> = ({ children }) => {
       await AsyncStorage.setItem("@fav_bmi", JSON.stringify(updatedValuesBMI));
 
       setDataBMI(updatedValuesBMI);
+      toastAlert("success", "El valor se borro correctamente de favoritos");
     } catch (error) {
       console.log(error);
     }

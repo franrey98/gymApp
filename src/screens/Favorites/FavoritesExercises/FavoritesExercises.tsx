@@ -1,10 +1,9 @@
 import React from "react";
-import { View, Text, Button, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFav } from "../../../hooks/useFav";
 import ContainerFavExercises from "../ContainerFavExercises/ContainerFavExercises";
 import LinkToHomeOrBMI from "../../../components/LinkToHomeOrBMI/LinkToHomeOrBMI";
-import { fonts } from "../../../constants/fonts";
 
 const FavoritesExercises = ({ navigation }: any) => {
   const { dataStorage, setDataStorage } = useFav();

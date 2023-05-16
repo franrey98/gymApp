@@ -97,7 +97,7 @@ const CardExercises = ({ exercises }: PropsExercises) => {
                 ref={video}
                 source={{ uri: url }}
                 resizeMode={ResizeMode.CONTAIN}
-                style={{ width: "100%", height: 220 }}
+                style={{ width: "100%", height: 240 }}
                 useNativeControls={true}
                 isLooping
                 onPlaybackStatusUpdate={(status) => setStatus(status)}
