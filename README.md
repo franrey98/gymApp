@@ -15,6 +15,10 @@ Gym App es una aplicación móvil que te brinda acceso a una amplia biblioteca d
 
 Además, la aplicación incluye una calculadora de índice de masa corporal (IMC) que te permite calcular tu IMC utilizando tu peso y altura. Esto te ayuda a evaluar tu estado nutricional y determinar si te encuentras en un rango de peso saludable.
 
+Para este trabajo se utilizaron las siguientes API : 
+- Body Mass Index (BMI) Calculator
+- MuscleWiki API
+
 ## Características
 
 - Amplia biblioteca de ejercicios para diferentes grupos musculares y categorías de entrenamiento.
