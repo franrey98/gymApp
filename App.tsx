@@ -2,16 +2,21 @@ import "react-native-gesture-handler";
 import Router from "./src/router/Router";
 import { MusclesProvider } from "./src/context/MusclesContext";
 import { BMIProvider } from "./src/context/BMIContext";
-import { useEffect, useCallback, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { View, ActivityIndicator } from "react-native";
+import Introduction from "./src/components/Introduction/Introduction";
+import { FavoriteProvider } from "./src/context/FavoritesContext";
 
 const AppStateMuscles = ({ children }: any) => {
   return <MusclesProvider>{children}</MusclesProvider>;
 };
 const AppStateBMI = ({ children }: any) => {
   return <BMIProvider>{children}</BMIProvider>;
+};
+const AppStateFavorite = ({ children }: any) => {
+  return <FavoriteProvider>{children}</FavoriteProvider>;
 };
 
 const App = () => {
@@ -49,13 +54,13 @@ const App = () => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
-      <AppStateMuscles>
-        <AppStateBMI>
-          <Router />
-        </AppStateBMI>
-      </AppStateMuscles>
-    </View>
+    <AppStateMuscles>
+      <AppStateBMI>
+        <AppStateFavorite>
+          <Introduction />
+        </AppStateFavorite>
+      </AppStateBMI>
+    </AppStateMuscles>
   );
 };
 
