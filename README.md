@@ -19,7 +19,13 @@ Para este trabajo se utilizaron las siguientes API :
 - Body Mass Index (BMI) Calculator
 - MuscleWiki API
 
-## Características
+Ademas las tecnologias mas revelantes que se usaron fueron: 
+- Typescript
+- Context
+- Expo
+- Axios
+
+- ## Características
 
 - Amplia biblioteca de ejercicios para diferentes grupos musculares y categorías de entrenamiento.
 - Detalles sobre cómo realizar correctamente cada ejercicio, incluyendo imágenes o videos de demostración.
