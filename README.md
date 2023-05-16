@@ -39,5 +39,3 @@ API_KEY='4fac46de4cmsh33a3c13ec53720dp1c2ca6jsnea94adb3b57d'
 - Linkedin: https://www.linkedin.com/in/francisco-rey-71060419a/
 - Email: reyfrancisco98@hotmail.com
 - Sitio web: https://portafolio-new-git-dev-franrey98.vercel.app/
-
-¡Gracias por utilizar Gym App!
