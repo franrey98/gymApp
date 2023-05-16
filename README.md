@@ -7,7 +7,6 @@ Gym App es una aplicación que te permite ver una amplia variedad de ejercicios 
 - [Descripción](#descripción)
 - [Características](#características)
 - [Instalación](#instalación)
-- [Uso](#uso)
 - [Contacto](#contacto)
 
 ## Descripción
@@ -34,3 +33,11 @@ API_URL_BASE_BMI='https://body-mass-index-bmi-calculator.p.rapidapi.com'
 API_URL_BASE_MUSCLES='https://musclewiki.p.rapidapi.com/exercises'
 API_KEY='4fac46de4cmsh33a3c13ec53720dp1c2ca6jsnea94adb3b57d'
 5. Inicia la aplicación: $ expo start
+
+## Contacto
+
+- Linkedin: https://www.linkedin.com/in/francisco-rey-71060419a/
+- Email: reyfrancisco98@hotmail.com
+- Sitio web: https://portafolio-new-git-dev-franrey98.vercel.app/
+
+¡Gracias por utilizar Gym App!
