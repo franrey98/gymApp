@@ -13,7 +13,7 @@ const StackAuth = () => {
         options={{
           headerTitle: "Register".toUpperCase(),
           headerTitleAlign: "left",
-          headerShown: true,
+          headerShown: false,
           headerTitleStyle: {
             color: "white",
             fontSize: 18,
@@ -29,7 +29,7 @@ const StackAuth = () => {
         options={{
           headerTitle: "Login".toUpperCase(),
           headerTitleAlign: "left",
-          headerShown: true,
+          headerShown: false,
           headerTitleStyle: {
             color: "white",
             fontSize: 18,

@@ -21,15 +21,6 @@ const UserRoutes = require("./routes/user");
 
 app.use("/api/user", UserRoutes);
 
-// Ruta de prueba
-app.get("/test", (req, res) => {
-  return res.status(200).json({
-    id: 1,
-    name: "francisco rey",
-    web: "prueba.com",
-  });
-});
-
 // Poner servidor a escuchart peticiones http
 app.listen(port, () => {
   console.log("Servidor corriendo en el puerto:", port);

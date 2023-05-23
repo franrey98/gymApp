@@ -9,7 +9,7 @@ import {
 import { Formik } from "formik";
 import { useAuth } from "../../hooks/useAuth";
 
-const Login = ({ navigation }) => {
+const Login = ({ navigation }: any) => {
   const { login } = useAuth();
   const initialValues = {
     email: "",
@@ -21,8 +21,8 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View>
-      <Text>Login</Text>
+    <View style={styles.container}>
+      <Text style={styles.textIntroduction}>Login</Text>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <>
@@ -47,15 +47,18 @@ const Login = ({ navigation }) => {
               />
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleSubmit()}
+            >
               <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.button}
+              style={styles.buttonToRegister}
               onPress={() => navigation.navigate("Register")}
             >
-              <Text style={styles.buttonText}>Go to Register</Text>
+              <Text style={styles.buttonToRegisterText}>Go to Register</Text>
             </TouchableOpacity>
           </>
         )}
@@ -65,24 +68,50 @@ const Login = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f9f9f9",
+    paddingHorizontal: 40,
+  },
+  textIntroduction: {
+    fontWeight: "600",
+    fontSize: 20,
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
   inputContainer: {
-    marginBottom: 10,
+    width: "100%",
+    marginBottom: 15,
   },
   input: {
-    height: 40,
-    borderColor: "gray",
     borderWidth: 1,
-    paddingHorizontal: 10,
+    borderColor: "gray",
+    padding: 10,
+    borderRadius: 5,
   },
   button: {
     backgroundColor: "blue",
-    padding: 10,
+    paddingVertical: 12,
     borderRadius: 5,
     marginTop: 10,
+    width: "100%",
   },
   buttonText: {
     color: "white",
+    fontSize: 16,
     textAlign: "center",
+  },
+  buttonToRegister: {
+    marginTop: 10,
+  },
+  buttonToRegisterText: {
+    textDecorationLine: "underline",
   },
 });
 

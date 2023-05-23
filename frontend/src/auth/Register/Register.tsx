@@ -2,8 +2,9 @@ import React from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { useAuth } from "../../hooks/useAuth";
+import { StyleSheet } from "react-native";
 
-const Register = ({ navigation }) => {
+const Register = ({ navigation }: any) => {
   const { register } = useAuth();
 
   const initialValues = {
@@ -21,7 +22,9 @@ const Register = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Register</Text>
+      <Text style={styles.title}>
+        Join our fitness community and get started with GymApp!
+      </Text>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {({ handleChange, handleBlur, handleSubmit, values }) => (
           <>
@@ -69,10 +72,10 @@ const Register = ({ navigation }) => {
               <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={styles.button}
+              style={styles.buttonToRegister}
               onPress={() => navigation.navigate("Login")}
             >
-              <Text style={styles.buttonText}>Ir a login</Text>
+              <Text style={styles.textButtonToRegister}>Go to login</Text>
             </TouchableOpacity>
           </>
         )}
@@ -81,11 +84,12 @@ const Register = ({ navigation }) => {
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    paddingHorizontal: 40,
   },
   title: {
     fontSize: 24,
@@ -93,7 +97,7 @@ const styles = {
     marginBottom: 20,
   },
   inputContainer: {
-    width: "80%",
+    width: "100%",
     marginBottom: 10,
   },
   input: {
@@ -105,15 +109,17 @@ const styles = {
   button: {
     backgroundColor: "blue",
     paddingVertical: 10,
-    paddingHorizontal: 20,
     borderRadius: 5,
     marginTop: 20,
+    width: "100%",
   },
   buttonText: {
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
   },
-};
+  buttonToRegister: { marginTop: 10 },
+  textButtonToRegister: { textDecorationLine: "underline" },
+});
 
 export default Register;

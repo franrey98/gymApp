@@ -7,14 +7,14 @@ const secret = libjwt.secretPwd;
 // MIDDELWARE - Funcion de auth
 exports.auth = (req, res, next) => {
   // Comprobar si llega la cabecera de auth
-  if (!req.header.authorization) {
+  if (!req.headers.authorization) {
     return res.status(403).send({
       status: "error",
       message: "La peticion no tiene la cabecera de autenticacionn",
     });
   }
   // Decodificar token
-  let token = req.header.authorization.replace(/['"]+/g, "");
+  let token = req.headers.authorization.replace(/['"]+/g, "");
 
   try {
     let payload = jwt.decode(token, secret);

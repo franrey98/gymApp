@@ -10,15 +10,18 @@ interface AuthContextState {
   login: (values: any) => Promise<void>;
   loginData: null;
   isLoading: boolean;
+  dataUser: null;
   fetchLoginData: () => Promise<void>;
   logout: () => Promise<void>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  getUserByID: (id: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextState | null>(null);
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [loginData, setLoginData] = useState(null);
+  const [dataUser, setDataUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -73,6 +76,24 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     setLoginData(null);
   };
 
+  const getUserByID = async (id: string) => {
+    let idUser = loginData?.user?.id;
+    const config = {
+      headers: {
+        Authorization: `${loginData?.token}`,
+      },
+    };
+    try {
+      const response = await axios(
+        `http://192.168.0.77:3900/api/user/profile/${idUser}`,
+        config
+      );
+      setDataUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -83,6 +104,8 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
         fetchLoginData,
         loginData,
         logout,
+        getUserByID,
+        dataUser,
       }}
     >
       {children}
