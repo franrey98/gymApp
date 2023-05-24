@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import { useAuth } from "../../hooks/useAuth";
 import { StyleSheet } from "react-native";
+import { RegisterProps } from "../../types/auth";
 
 const Register = ({ navigation }: any) => {
   const { register } = useAuth();
@@ -14,8 +15,7 @@ const Register = ({ navigation }: any) => {
     password: "",
   };
 
-  const handleSubmit = (values: any) => {
-    // Lógica para enviar los datos del formulario
+  const handleSubmit = (values: RegisterProps) => {
     register(values);
     navigation.navigate("Login");
   };
@@ -67,7 +67,7 @@ const Register = ({ navigation }: any) => {
             </View>
             <TouchableOpacity
               style={styles.button}
-              onPress={handleSubmit as any}
+              onPress={() => handleSubmit()}
             >
               <Text style={styles.buttonText}>Submit</Text>
             </TouchableOpacity>

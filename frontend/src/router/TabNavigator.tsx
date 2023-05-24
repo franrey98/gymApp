@@ -79,8 +79,7 @@ const TabNavigator = () => {
       />
       <BottomTab.Screen
         options={{
-          headerTitle: "Profile".toUpperCase(),
-
+          headerTitle: "My Profile".toUpperCase(),
           tabBarLabel: "Profile",
           headerTitleAlign: "left",
           headerTitleStyle: {

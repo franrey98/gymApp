@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import { useAuth } from "../../hooks/useAuth";
+import { LoginProps } from "../../types/auth";
 
 const Login = ({ navigation }: any) => {
   const { login } = useAuth();
@@ -15,8 +16,7 @@ const Login = ({ navigation }: any) => {
     email: "",
     password: "",
   };
-
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: LoginProps) => {
     login(values);
   };
 

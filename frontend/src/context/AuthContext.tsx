@@ -4,13 +4,14 @@ import axios from "axios";
 import { Props } from "../types/props";
 import { toastAlert } from "../utils/alerts";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { LoginProps, LoginResponse, RegisterProps, User } from "../types/auth";
 
 interface AuthContextState {
   register: (values: any) => Promise<void>;
   login: (values: any) => Promise<void>;
-  loginData: null;
+  loginData: LoginResponse | null;
   isLoading: boolean;
-  dataUser: null;
+  dataUser: User | null;
   fetchLoginData: () => Promise<void>;
   logout: () => Promise<void>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,8 +21,20 @@ interface AuthContextState {
 export const AuthContext = createContext<AuthContextState | null>(null);
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [loginData, setLoginData] = useState(null);
-  const [dataUser, setDataUser] = useState(null);
+  const [loginData, setLoginData] = useState<LoginResponse | null>({
+    status: "",
+    message: "",
+    user: {
+      id: "",
+      name: "",
+      lastName: "",
+      image: "",
+      email: "",
+    },
+    token: "",
+  });
+
+  const [dataUser, setDataUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -41,28 +54,24 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     }
   };
 
-  const register = async (values: any) => {
-    setIsLoading(true);
+  const register = async (values: RegisterProps) => {
     try {
       const response = await axios.post(
         "http://192.168.0.77:3900/api/user/register",
         values
       );
-      console.log("respuesta del post", response.data);
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
-  const login = async (values: any) => {
+
+  const login = async (values: LoginProps) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
         "http://192.168.0.77:3900/api/user/login",
         values
       );
-      console.log("respuesta del post", response.data);
-
       await AsyncStorage.setItem("loginData", JSON.stringify(response.data));
       setLoginData(response.data);
       setIsLoading(false);
@@ -76,7 +85,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     setLoginData(null);
   };
 
-  const getUserByID = async (id: string) => {
+  const getUserByID = async () => {
     let idUser = loginData?.user?.id;
     const config = {
       headers: {
@@ -88,7 +97,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
         `http://192.168.0.77:3900/api/user/profile/${idUser}`,
         config
       );
-      setDataUser(response.data);
+      setDataUser(response.data.user);
     } catch (error) {
       console.log(error);
     }
