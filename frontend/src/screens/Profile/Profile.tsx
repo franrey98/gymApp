@@ -1,27 +1,66 @@
 import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { useAuth } from "../../hooks/useAuth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import * as ImagePicker from "expo-image-picker";
+import { firebase } from "../../services/services";
 
 const Profile = () => {
   const { logout, getUserByID, dataUser } = useAuth();
+
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      setImage(result?.assets[0]);
+    }
+  };
+
+  const uploadImageFB = async () => {
+    setLoading(true);
+    const response = await fetch(image?.uri);
+    const blob = await response.blob();
+    const filename = image?.fileName
+      ? image?.fileName.substring(image?.uri?.lastIndexOf("/") + 1)
+      : null;
+
+    let ref = firebase.storage().ref().child(filename).put(blob);
+
+    try {
+      await ref;
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+    Alert.alert("Photo uploaded..!!");
+    setImage(null);
+  };
 
   useEffect(() => {
     getUserByID("");
   }, []);
 
-  const handleChangePhoto = () => {
-    // Lógica para cambiar la foto
-    // Aquí puedes abrir una modal, mostrar un selector de imágenes, etc.
-    console.log("Cambiar foto");
-  };
-
   return (
     <View style={styles.container}>
       {dataUser ? (
         <>
-          <TouchableOpacity onPress={handleChangePhoto}>
-            {dataUser?.image === "default.png" ? (
+          <TouchableOpacity onPress={pickImage}>
+            {!dataUser?.image === "default.png" ? (
               <Image
                 source={{
                   uri: "https://www.shutterstock.com/image-vector/default-avatar-profile-vector-user-260nw-1705357234.jpg",
@@ -29,8 +68,11 @@ const Profile = () => {
                 style={styles.image}
               />
             ) : (
-              <Image source={{ uri: dataUser?.image }} style={styles.image} />
+              <Image source={{ uri: image?.uri }} style={styles.image} />
             )}
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={uploadImageFB}>
+            <Text style={styles.buttonText}>Subir imagenes</Text>
           </TouchableOpacity>
 
           <Text style={styles.text}>{dataUser?.name}</Text>
